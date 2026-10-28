@@ -115,85 +115,41 @@ pack 里被晋级为独立 skill 的 6 张卡：
 
 ## 测试与验证
 
-生成过程的测试材料一并发布在 `evals/`：`test-prompts/` 是 8 个入口的触发用例，`trigger-suite.json` 是可直接跑的触发盲测套件，`测试报告-A/B/C.md` 是阶段 4 压力测试的逐卡记录。
+测试材料见各 skill 目录下的 `test-prompts.json`：single 入口 1 份、pack 7 个入口各 1 份，共 8 份，覆盖全部 8 个可安装入口。
 
 - **逐卡压力测试**：10 张卡各跑 1 条代表性任务 + 1 条负例/边界用例，10 / 10 PASS；代表性任务严格按卡内 E 段逐步执行，缺数据一律走判停规则（标"无数据"、进待核清单），不静默猜值。三份报告按 U1–U3 / U4–U7 / U8–U10 分组覆盖全部 10 张卡，过程中登记的回填级修正已并入卡片
 - **负例守边界**：要求预测点位、给出挂单时点、推荐具体个股、套用美股/日股口径等越界请求，均被正确拒绝并引用原书边界条款
-- **触发用例**：single 入口 1 份 + pack 7 个入口各 1 份，每份 3 条 should_trigger + 2 条 should_not_trigger（含至少 1 条同书兄弟 skill 的混淆诱饵）+ 1 条 edge_case，`minimum_pass_rate` 0.8；`trigger-suite.json` 另收 10 条、其中 6 条是兄弟 skill 诱饵的盲测用例
-- **如实说明**：触发与输出评测目前是人工执行 + 纸面走查，机器评测脚本（`run_trigger_evals.py`、`run_output_evals.py`）在本环境未跑通，`evals/` 发布的是用例与人工核对记录，不是自动化跑分结果
+- **触发用例**：single 入口 1 份 + pack 7 个入口各 1 份，每份 3 条 should_trigger + 2 条 should_not_trigger（含至少 1 条同书兄弟 skill 的混淆诱饵）+ 1 条 edge_case，`minimum_pass_rate` 0.8；8 份共 48 条用例，其中 16 条是同书兄弟 skill 的混淆诱饵
+- **如实说明**：触发与输出评测目前是人工执行 + 纸面走查，机器评测脚本（`run_trigger_evals.py`、`run_output_evals.py`）在本环境未跑通，仓库里发布的是用例与人工核对记录，不是自动化跑分结果
 
 ## 仓库结构
 
 ```text
 lidaxiao-investment-strategy-skill/
-├── README.md                      ← 你正在看的
-├── README.en.md                   ← English version
-├── LICENSE                        ← MIT
-├── GITHUB_REPO.md                 ← GitHub 仓库元数据（description / topics）
-├── INDEX.md                       ← skill 地图：能力总表 + 依赖关系 + 加载顺序
-├── BOOK_OVERVIEW.md               ← 整书理解（Adler 四步拆解，阶段 0 产出）
-├── verified.md                    ← 372 条候选的三重验证与 10 单元聚类结论
-├── CANGJIE_ADAPTATION.md          ← 仓颉适配说明：文本状态 / 蒸馏目标 / 证据规则 / 使用边界
-├── TEST_SUMMARY.md                ← 阶段 4 压力测试摘要：范围 / 结构检查 / 结果 / 回归建议
-├── candidates/                    ← 阶段 1 五路提取的候选池原件（共 372 条）
-│   ├── frameworks.md              ← 框架候选 49 条
-│   ├── principles.md              ← 原则候选 145 条
-│   ├── cases.md                   ← 案例候选 76 条
-│   ├── counter_examples.md        ← 反例候选 51 条
-│   └── glossary.md                ← 术语候选 51 条
-├── bundle/                        ← 编译器读的 Bundle（不含 runs/ 与 snapshots/）
-│   ├── verified.yaml              ← 能力元数据：capability_id / slug / 触发意图 / also_read / 去向
-│   ├── cards/                     ← 10 张能力卡原件（ldxx-<slug>-skill.md）
-│   └── book/
-│       ├── overview.md            ← 整书概览
-│       └── glossary.md            ← 术语表
-├── single/                        ← 单一入口模式
-│   └── lidaxiao-investment-strategy-skill/
-│       ├── SKILL.md               ← 入口：触发条件 + 路由表 + 加载规则
-│       ├── BUILD_MANIFEST.json    ← 编译清单与文件哈希
-│       ├── test-prompts.json      ← 入口触发用例（3 正 / 2 负 / 1 边界）
-│       └── references/
-│           ├── overview.md        ← 整书概览
-│           ├── capability-index.md  ← 完整意图与关键词索引
-│           ├── cheatsheet.md      ← 决策规则速查
-│           ├── glossary.md        ← 术语表
-│           └── capabilities/      ← 10 张能力卡
-├── pack/                          ← 多入口模式（compact pack）
-│   ├── BUILD_MANIFEST.json
-│   ├── capability-destinations.json
-│   ├── lidaxiao-investment-strategy-skill-router/
-│   │   ├── SKILL.md               ← 来源路由入口
-│   │   ├── test-prompts.json      ← 触发用例（3 正 / 2 负 / 1 边界）
-│   │   └── references/            ← 10 张卡 + 索引，供 router 内部调用
-│   │       ├── overview.md
-│   │       ├── capability-index.md
-│   │       ├── cheatsheet.md
-│   │       ├── glossary.md
-│   │       └── capabilities/      ← 10 张能力卡
-│   ├── bottom-identification-skill/
-│   │   ├── SKILL.md
-│   │   └── test-prompts.json      ← 触发用例（3 正 / 2 负 / 1 边界）
-│   ├── top-bubble-signals-skill/
-│   │   ├── SKILL.md
-│   │   └── test-prompts.json      ← 触发用例（3 正 / 2 负 / 1 边界）
-│   ├── wind-vane-tracking-skill/
-│   │   ├── SKILL.md
-│   │   └── test-prompts.json      ← 触发用例（3 正 / 2 负 / 1 边界）
-│   ├── bond-stock-spread-skill/
-│   │   ├── SKILL.md
-│   │   └── test-prompts.json      ← 触发用例（3 正 / 2 负 / 1 边界）
-│   ├── fund-flow-policy-skill/
-│   │   ├── SKILL.md
-│   │   └── test-prompts.json      ← 触发用例（3 正 / 2 负 / 1 边界）
-│   └── stock-selection-skill/
-│       ├── SKILL.md
-│       └── test-prompts.json      ← 触发用例（3 正 / 2 负 / 1 边界）
-└── evals/                         ← 触发用例与逐卡压力测试记录
-    ├── 测试报告-A.md              ← U1–U3 代表性任务 + 负例
-    ├── 测试报告-B.md              ← U4–U7 代表性任务 + 负例
-    ├── 测试报告-C.md              ← U8–U10 代表性任务 + 负例
-    ├── trigger-suite.json         ← 触发盲测套件（run_trigger_evals 格式）
-    └── test-prompts/              ← 8 个入口各 1 份触发用例
+├── README.md              ← 你正在看的
+├── README.en.md           ← English version
+├── LICENSE                ← MIT
+├── BOOK_OVERVIEW.md       ← 阶段 0 产出：全书 Adler 分析
+├── INDEX.md               ← 阶段 3 产出：skill 总览 + 依赖关系
+├── verified.md            ← 通过三重验证的 10 个单元
+├── TEST_SUMMARY.md        ← 阶段 4 产出：压力测试摘要
+├── CANGJIE_ADAPTATION.md  ← 仓颉适配说明
+├── GITHUB_REPO.md         ← 仓库元数据
+├── candidates/            ← 阶段 1 产出：原始候选池
+│   ├── frameworks.md      ← 框架与方法候选
+│   ├── principles.md      ← 原则 / 规则 / 计算候选
+│   ├── cases.md           ← 书中案例候选
+│   ├── counter-examples.md← 反例与边界候选
+│   └── glossary.md        ← 术语候选
+├── rejected/              ← 阶段 1.5 产出：被淘汰的单元 + 原因
+├── bundle/                ← 编译事实源
+│   ├── verified.yaml      ← 能力元数据、判据与去向
+│   ├── cards/             ← 能力卡源文件（六段结构）
+│   └── book/              ← overview.md + glossary.md
+├── single/                ← single 模式（1 个入口 + 全部能力卡）
+│   └── lidaxiao-investment-strategy-skill/SKILL.md  ← 入口：触发 + 路由表 + 加载规则
+└── pack/                  ← pack 模式（1 个路由入口 + 6 个晋级 skill）
+    └── */SKILL.md         ← 7 个 skill，每个附带 test-prompts.json
 ```
 
 ## 如何使用

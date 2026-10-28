@@ -115,85 +115,41 @@ One boundary clause runs through every card: in the introduction the author stat
 
 ## Testing and verification
 
-The test material from the generation process ships with the repository under `evals/`: `test-prompts/` holds trigger cases for all 8 entries, `trigger-suite.json` is a runnable trigger blind-test suite, and `测试报告-A/B/C.md` are the per-card records of the stage-4 stress test.
+The test material lives in the `test-prompts.json` files inside each skill directory: 1 for the single entry and 1 for each of the 7 pack entries — 8 in total, covering all 8 installable entries.
 
 - **Per-card stress test**: each of the 10 cards ran 1 representative task plus 1 negative/boundary case, 10 / 10 PASS. Representative tasks follow the card's E-section steps exactly, and missing data always goes through the stop rules (marked "no data", added to the open-items list) instead of being guessed. The three reports cover U1–U3 / U4–U7 / U8–U10, so all 10 cards are covered, and the backfill-level fixes logged along the way were folded into the cards
 - **Negative cases hold the boundary**: requests to forecast levels, give order-placement times, recommend specific stocks, or apply US/Japan market conventions were all refused correctly, citing the book's own boundary clause
-- **Trigger cases**: 1 for the single entry plus 1 for each of the 7 pack entries — 3 should_trigger + 2 should_not_trigger (at least one a sibling-skill decoy) + 1 edge_case each, `minimum_pass_rate` 0.8. `trigger-suite.json` adds 10 more cases, 6 of them sibling-skill decoys
-- **Stated honestly**: trigger and output evaluation so far is manual execution plus a paper walkthrough. The machine-grading scripts (`run_trigger_evals.py`, `run_output_evals.py`) did not run in this environment, so what ships under `evals/` is cases plus human review records, not automated scores
+- **Trigger cases**: 1 for the single entry plus 1 for each of the 7 pack entries — 3 should_trigger + 2 should_not_trigger (at least one a sibling-skill decoy) + 1 edge_case each, `minimum_pass_rate` 0.8. That is 48 cases across the 8 files, 16 of them sibling-skill decoys
+- **Stated honestly**: trigger and output evaluation so far is manual execution plus a paper walkthrough. The machine-grading scripts (`run_trigger_evals.py`, `run_output_evals.py`) did not run in this environment, so what ships in the repository is cases plus human review records, not automated scores
 
 ## Repository layout
 
 ```text
 lidaxiao-investment-strategy-skill/
-├── README.md                      ← Chinese version
-├── README.en.md                   ← you are reading this
-├── LICENSE                        ← MIT
-├── GITHUB_REPO.md                 ← GitHub repository metadata (description / topics)
-├── INDEX.md                       ← skill map: capability table + dependencies + loading order
-├── BOOK_OVERVIEW.md               ← whole-book comprehension (Adler four-step, stage 0 output)
-├── verified.md                    ← triple-verification and 10-unit clustering of the 372 candidates
-├── CANGJIE_ADAPTATION.md          ← cangjie adaptation notes: text status / distillation goals / evidence rules / usage boundaries
-├── TEST_SUMMARY.md                ← stage 4 stress-test summary: scope / structure checks / results / regression guidance
-├── candidates/                    ← candidate pools from the five stage-1 extractors (372 in total)
-│   ├── frameworks.md              ← 49 framework candidates
-│   ├── principles.md              ← 145 principle candidates
-│   ├── cases.md                   ← 76 case candidates
-│   ├── counter_examples.md        ← 51 counter-example candidates
-│   └── glossary.md                ← 51 glossary candidates
-├── bundle/                        ← the Bundle the compiler reads (no runs/ or snapshots/)
-│   ├── verified.yaml              ← capability metadata: capability_id / slug / intents / also_read / destination
-│   ├── cards/                     ← the 10 capability cards as authored (ldxx-<slug>-skill.md)
-│   └── book/
-│       ├── overview.md            ← whole-book overview
-│       └── glossary.md            ← glossary
-├── single/                        ← single-entry build
-│   └── lidaxiao-investment-strategy-skill/
-│       ├── SKILL.md               ← entry: triggers + routing table + loading rules
-│       ├── BUILD_MANIFEST.json    ← build manifest and file hashes
-│       ├── test-prompts.json      ← entry trigger cases (3 positive / 2 negative / 1 edge)
-│       └── references/
-│           ├── overview.md        ← whole-book overview
-│           ├── capability-index.md  ← full intent and keyword index
-│           ├── cheatsheet.md      ← decision-rule quick reference
-│           ├── glossary.md        ← glossary
-│           └── capabilities/      ← 10 capability cards
-├── pack/                          ← multi-entry build (compact pack)
-│   ├── BUILD_MANIFEST.json
-│   ├── capability-destinations.json
-│   ├── lidaxiao-investment-strategy-skill-router/
-│   │   ├── SKILL.md               ← source router entry
-│   │   ├── test-prompts.json      ← trigger cases (3 positive / 2 negative / 1 edge)
-│   │   └── references/            ← 10 cards + indexes, called by the router
-│   │       ├── overview.md
-│   │       ├── capability-index.md
-│   │       ├── cheatsheet.md
-│   │       ├── glossary.md
-│   │       └── capabilities/      ← 10 capability cards
-│   ├── bottom-identification-skill/
-│   │   ├── SKILL.md
-│   │   └── test-prompts.json      ← trigger cases (3 positive / 2 negative / 1 edge)
-│   ├── top-bubble-signals-skill/
-│   │   ├── SKILL.md
-│   │   └── test-prompts.json      ← trigger cases (3 positive / 2 negative / 1 edge)
-│   ├── wind-vane-tracking-skill/
-│   │   ├── SKILL.md
-│   │   └── test-prompts.json      ← trigger cases (3 positive / 2 negative / 1 edge)
-│   ├── bond-stock-spread-skill/
-│   │   ├── SKILL.md
-│   │   └── test-prompts.json      ← trigger cases (3 positive / 2 negative / 1 edge)
-│   ├── fund-flow-policy-skill/
-│   │   ├── SKILL.md
-│   │   └── test-prompts.json      ← trigger cases (3 positive / 2 negative / 1 edge)
-│   └── stock-selection-skill/
-│       ├── SKILL.md
-│       └── test-prompts.json      ← trigger cases (3 positive / 2 negative / 1 edge)
-└── evals/                         ← trigger cases and per-card stress-test records
-    ├── 测试报告-A.md              ← U1–U3 representative tasks + negative cases
-    ├── 测试报告-B.md              ← U4–U7 representative tasks + negative cases
-    ├── 测试报告-C.md              ← U8–U10 representative tasks + negative cases
-    ├── trigger-suite.json         ← trigger blind-test suite (run_trigger_evals format)
-    └── test-prompts/              ← 1 trigger case file per entry, 8 in total
+├── README.md              ← Chinese version
+├── README.en.md           ← you are reading this
+├── LICENSE                ← MIT
+├── BOOK_OVERVIEW.md       ← stage 0 output: Adler whole-book analysis
+├── INDEX.md               ← stage 3 output: skill map + dependencies
+├── verified.md            ← 10 units that passed triple verification
+├── TEST_SUMMARY.md        ← stage 4 output: stress-test summary
+├── CANGJIE_ADAPTATION.md  ← cangjie adaptation notes
+├── GITHUB_REPO.md         ← repository metadata
+├── candidates/            ← stage 1 output: raw candidate pool
+│   ├── frameworks.md      ← framework and method candidates
+│   ├── principles.md      ← principle / rule / calculation candidates
+│   ├── cases.md           ← case candidates from the book
+│   ├── counter-examples.md← counter-example and boundary candidates
+│   └── glossary.md        ← terminology candidates
+├── rejected/              ← stage 1.5 output: rejected units + reasons
+├── bundle/                ← compilation source of truth
+│   ├── verified.yaml      ← capability metadata, criteria and destinations
+│   ├── cards/             ← capability card sources (six sections)
+│   └── book/              ← overview.md + glossary.md
+├── single/                ← single-mode build (one entry + all capability cards)
+│   └── lidaxiao-investment-strategy-skill/SKILL.md  ← entry: triggers + routing table + loading rules
+└── pack/                  ← pack-mode build (one router + 6 promoted skills)
+    └── */SKILL.md         ← 7 skills, each shipping a test-prompts.json
 ```
 
 ## Usage
