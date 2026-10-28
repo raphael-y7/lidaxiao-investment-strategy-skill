@@ -202,7 +202,7 @@ Ask: "Does the current level count as a historic bottom, and which items should 
 
 ## Sources
 
-- *Lidaxiao Investment Strategy*
+- *Lidaxiao Investment Strategy* by Li Daxiao
 - Distilled from the whole book, producing 10 capability cards
 
 ## Notice
