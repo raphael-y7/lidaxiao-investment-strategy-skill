@@ -1,0 +1,216 @@
+<h1 align="center">李大霄投资战略 Skill</h1>
+
+<p align="center">中文 | <a href="README.en.md">English</a></p>
+
+一套可直接使用的 AI skill 工具包——把《李大霄投资战略》里的 A 股大势判断方法，蒸馏成 10 张可单独触发、也可组合调用的能力卡。
+
+它不是原书摘要，也不是读后感，而是把书中可复用的方法论拆成可触发、可执行、可测试的 skill 模块。
+
+## 这套 skills 能解决什么问题
+
+- 指数跌了一大截，想抄底又怕接飞刀：手里只有"跌得够多了"这一条理由，说不清现在到底是不是历史大底区域
+- 拿到了 PE、PB、股息率、国债收益率的读数，却不知道这些数字该往哪个区间里对照，也不知道"两套口径不能混着比"
+- 汇金增持、社保进场、IPO 暂停、万亿巨量不涨、外资变脸——新闻天天有，不知道哪些算数、哪些只是噪音
+- 在"钱继续放债券基金"和"换成高股息资产"之间摇摆，缺一把能算出来的股债性价比标尺
+- 不确定自己该不该入市：这笔钱算不算余钱、能不能加杠杆、要不要先按基金五步骤逐级来
+- 一跌就想割、一涨就想追，缺一份能逐项打勾的纪律自检和情绪反向指标，复盘时只能说"当时按规则做就好了"
+
+## 蒸馏了什么
+
+10 张能力卡，按"先定位、再算账、再过门槛，最后落到买什么与情绪自检"的顺序分四组：
+
+- **大势与位置**：`position-posture-skill`（大势位置—操作姿态总纲）、`bottom-identification-skill`（历史大底五维识别）、`top-bubble-signals-skill`（顶部、泡沫与转弱信号识别）
+- **资金与配置**：`wind-vane-tracking-skill`（风向标与跨市场资金跟踪）、`bond-stock-spread-skill`（股债差逆向配置与高息牛判别）、`fund-flow-policy-skill`（资金供需流量与政策研判）
+- **门槛与自我定位**：`entry-qualification-skill`（入市资格自检与散户进阶）、`strategy-fit-skill`（策略定位与能力自检）
+- **标的与情绪**：`stock-selection-skill`（选股优先与排除）、`sentiment-contrarian-skill`（情绪逆向与信息甄别）
+
+## 两种打包模式：single 与 pack
+
+同一套 10 张能力卡，按两种粒度各编译了一次。两者能力内容完全相同，区别只在"agent 能看到几个入口"。
+
+| | single（单一入口） | pack（compact pack，多入口） |
+|---|---|---|
+| 可发现入口 | **1 个**：`lidaxiao-investment-strategy-skill` | **7 个**：1 个来源路由入口 + 6 个已晋级独立 skill |
+| 10 张能力卡放在哪 | 全部在入口的 `references/capabilities/` 里，由入口按路由表按需加载 1–2 张 | 6 张卡各自独立成 skill；其余 4 张仍在 router 的 `references/` 里 |
+| 触发方式 | 只有入口的 description 参与匹配，进入后靠路由表分流 | 6 个高频能力可被 description 直接命中，少一跳 |
+| 升级维护 | 替换 1 个目录 | 替换 7 个目录 |
+
+pack 里被晋级为独立 skill 的 6 张卡：
+
+- `bottom-identification-skill` — 历史大底五维识别
+- `top-bubble-signals-skill` — 顶部、泡沫与转弱信号识别
+- `wind-vane-tracking-skill` — 风向标与跨市场资金跟踪
+- `bond-stock-spread-skill` — 股债差逆向配置与高息牛判别
+- `fund-flow-policy-skill` — 资金供需流量与政策研判
+- `stock-selection-skill` — 选股优先与排除
+
+留在 router 里、由路由表分流的 4 张卡：`position-posture-skill`（大势位置—操作姿态总纲）、`entry-qualification-skill`（入市资格自检与散户进阶）、`strategy-fit-skill`（策略定位与能力自检）、`sentiment-contrarian-skill`（情绪逆向与信息甄别）。这 4 张要么依赖其他卡的判据才能落地（位置映射依赖大底/顶部判定），要么本身就是其余能力的前提闸门，独立成 skill 反而容易脱离上下文乱答。
+
+### 该装哪一种
+
+按你的工作方式选，**只装一种**：
+
+| 你的工作方式 | 推荐 | 原因 |
+|---|---|---|
+| 用 DSH / Codex / Claude Code 等有 skills 目录，希望列表干净 | single | 只占 1 个入口，能力一张不少 |
+| 日常问题高度集中在"是不是大底 / 是不是顶部 / 国家队在干什么 / 股债怎么配 / 买什么股" | pack | 这 6 类正是被晋级的独立 skill，能直接命中 |
+| 要分发给多个 agent 或团队，各自按需取用 | pack | 可以只装其中几个独立 skill，不必整包 |
+| 只想装一次、不想维护多个目录 | single | 升级时只替换 1 个目录 |
+
+> 两版由同一个 Bundle 编译，能力内容一致。**同时安装会重复触发**，请只装一种。
+
+## 效果示例
+
+### 示例 1：跌到 2700 点附近，是不是历史大底、能不能抄底
+
+**用户问题**
+
+"上证跌到 2700 点附近，PE 看着不高，是不是历史大底？能不能开始抄底？"
+
+**skill 如何判断**
+
+- 进 `bottom-identification-skill`，先固定口径：书里给了两套互不通用的历史大底对照表——沪指动态市盈率口径（325 点 11.58 / 998 点 14.56 / 1664 点 12.5 / 1849 点 10.85 倍，区间约 10.85—14.56 倍）与全部 A 股口径（998 点 14.37 / 1664 点 13.11 / 1849 点 10.86 / 2440 点 12.25 倍，区间约 10.86—14.37 倍；PB 分别 1.54 / 1.91 / 0.77 / 1.23 倍，区间约 0.77—1.91 倍）。两套不得混算，对照表每行都要注明口径与出处年份
+- 五维逐项核对：①估值 ②股债差 ③风向标与资金 ④情绪极值 ⑤供给与政策，每项判"符合 / 不符合 / 无数据"；缺数据的项标"无数据"进待核清单，**不得默认视为满足**
+- 汇总判定：≥4 项同向 → "历史大底区域特征显著"；3 项 → "疑似，继续跟踪"；≤2 项 → "不足以判定为底部区域"
+- 判停分支：估值维度明显偏离区间（PE 显著高于对照上限）时，即使其余维度同向，也只能输出"非典型历史大底"——原书判据以估值为锚，历史 7 个低点都是极端估值
+- 输出末尾强制带原书边界条款，并衔接 `position-posture-skill` 谈操作姿态
+
+**最终回答示例**
+
+> 先别把"2700 点"当结论，点位不是判据——书里专门提醒过：同样是 3000 点，2007 年是 34 倍 PE / 5 倍 PB，2022 年是 11.6 倍 / 1.24 倍，位置完全不同。第一步固定口径：你这个 PE 是沪指动态口径还是全部 A 股口径？两套对照区间不一样（约 10.85—14.56 与 10.86—14.37），混着算会得出错误结论。第二步五维打勾：估值（落没落进区间、大盘成份股股息率是否高于一年期存款利率）、股债差（优质股股息率减 10 年或 50 年国债收益率是否在历史高位）、风向标与资金（产业资本是否由减持转增持、回购增持总量是否超过融资总量、汇金社保是否出手）、情绪极值（是否一边倒看空、是否无人谈股）、供给与政策（IPO 是否暂停或明显收紧）。你只给了点位和 PE，国债收益率、增减持、情绪这几项我没数据，只能标"无数据"进待核清单，不能默认算满足。五项里 ≥4 项同向才算"底部区域特征显著"，3 项只是疑似。还有一条硬规则：估值明显高于对照上限时，别的维度再像也只能判"非典型历史大底"。另外如实说明两处原书缺口——"最低估最优质"好股票的完整量化筛选清单书里没给，股债差里"优质股股息率"的取数口径也没完整定义，这两处需要你自己声明口径，不能宣称是原书口径。最后：判成"底部区域"只说明区域，不承诺时点，作者自己的说法是"融冰之旅"，不是"马上涨"。
+
+### 示例 2：钱继续放债基，还是换成高股息
+
+**用户问题**
+
+"现在钱放债券基金还是买高股息？股债差是不是已经到历史高位了？"
+
+**skill 如何判断**
+
+- 进 `bond-stock-spread-skill`，先做前提判停：核对这笔钱是否满足余钱双条件（30—50 年没有使用安排 + 能承受净值波动）、配置比例是否与风险承受能力相适应；不满足 → 终止，只输出"先完成余钱与风险适配自检"。用户没声明资金性质时不直接终止，改为输出条件性结论并标注"前提未核验"
+- 计算股债差 = 优质股股息率 − 10 年（或 50 年）国债到期收益率，单位为百分点、保留两位小数，两个期限口径**并列报告、不取平均**
+- 定位历史分位，结论只允许三态之一：高位区（股票相对极便宜）/ 中性 / 低位区（股票相对极贵）。书内参照读数：2024-02-05 十年债 2.4002%（2002-04-15 以来新低）、50 年债 2.7064% 历史新低；2024-03-06 再创新低（10 年 2.2650%、50 年 2.5978%）
+- 过热信号核对跷跷板两端：债端看货基是否暴涨甚至涨停（年化约 2% 的资产被 10% 溢价追买＝债市泡沫）、债基与短债基金是否限购；股端看明星股基是否限购、认购是否需抽签。任一端出现过热信号，该端资产的"追买"结论直接降级为过热警示
+- 想判"高息牛"要三条件同时成立：①资产荒 ②低利率 ③高分红，且**仅限好股票**，差股票不受益
+- 可选一步：回购增持套利空间 = 板块股息率 − 回购增持借款成本（书内 2024-10 例：上证 50 股息率 3.65% − 借款成本 2.25% = 1.40%；沪深 300 股息率 3.06% − 2.25% = 0.81%），并提醒核对回购实施进度，别把"只回购了一手"算成证据
+
+**最终回答示例**
+
+> 前提先摆到前面：这笔钱是不是 30—50 年不用、并且能承受净值波动？如果不是余钱，"股债怎么配"的正确答案是先别配。确认是余钱再算账：股债差 = 优质股股息率 − 国债收益率，10 年和 50 年两个口径都要算、并列报出来，不要取平均。口径也得说清楚：书里的例子用的是大盘蓝筹指数股息率（2024 年 10 月那篇写的是上证 50 为 3.65%、沪深 300 为 3.06%），但原书并没有给"优质股股息率"的完整取数定义，所以你用哪套口径必须自己声明，不能拿全市场股息率冒充大盘股息率。算完对照三态：高位区说明股票相对极便宜、低位区说明股票相对极贵——作者的规则是"配置股票的最佳时机在股债差的历史高位而不在历史低位"，大部分人恰恰做反。再查两端过热：债端看货基有没有暴涨甚至涨停、债基是否限购；股端看明星股基是否限购、认购要不要抽签。哪一端出现过热，那一端的"追买"结论就要降级成过热警示。如果你真正想问的是"高息牛还在不在"，那要三条同时成立——资产荒、低利率、高分红，而且只对好股票成立。最后一句实话：原书没有给精确的股债配置比例公式，也算不出"该配百分之多少"，它给的是方向性的逆向规则。
+
+## 这些 skill 是怎么生成出来的
+
+这套 skill 使用 **[cangjie-skill](https://github.com/kangarooking/cangjie-skill)** 的 RIA-TV++ 流水线生成，整个流程分六个阶段：
+
+1. **整书理解（Adler 分析）**——用 Mortimer Adler 的分析阅读法，对全书做结构、解释、批判、应用四步拆解，先定出"用户要拿它做股票投资分析"这一蒸馏倾向
+2. **并行提取**——同时派多个专项提取器（框架、原则、案例、反例、术语），从原文中提取候选方法论单元，本书共提取 372 条（框架 49、原则 145、案例 76、反例 51、术语 51）
+3. **三重验证筛选**——每个候选必须通过三项检验：书内至少有 2 处独立佐证（跨域）、能回答书中未明说的新问题（预测力）、不是常识（独特性）。372 条中 307 条 verified、62 条降为参考材料、3 条留待复核、0 条凭空编造；数值类约 110 个独立数字逐一回查原文
+4. **RIA++ 构造**——按 R（原文引用）/ I（用自己的话重写）/ A1（书中案例）/ A2（未来触发场景）/ E（可执行步骤）/ B（边界与盲点）六个维度结构化，聚成 10 个能力单元，每个单元一张卡
+5. **Zettelkasten 链接**——找出能力卡之间的依赖、对比、组合关系，生成能力索引与路由表，并在每张卡的 A2 段写清"与相邻能力怎么区分"
+6. **触发与输出测试**——按卡逐条执行代表性任务与负例/边界测试，缺数据一律按卡片判停规则处理、不静默猜值；未通过的卡回炉重做
+
+本书有一条贯穿全部卡片的边界条款：作者自己在导读里写明"预测会受到多种因素甚至是不可抗力的影响而发生偏差……绝对不能作为操作依据"。这条被写进每一张卡的 B 段，也写进了入口的判停规则。
+
+## 仓库结构
+
+```text
+lidaxiao-investment-strategy-skill/
+├── README.md                      ← 你正在看的
+├── README.en.md                   ← English version
+├── LICENSE                        ← MIT
+├── BOOK_OVERVIEW.md               ← 整书理解（Adler 四步拆解，阶段 0 产出）
+├── verified.md                    ← 372 条候选的三重验证与 10 单元聚类结论
+├── single/                        ← 单一入口模式
+│   └── lidaxiao-investment-strategy-skill/
+│       ├── SKILL.md               ← 入口：触发条件 + 路由表 + 加载规则
+│       ├── BUILD_MANIFEST.json    ← 编译清单与文件哈希
+│       └── references/
+│           ├── overview.md        ← 整书概览
+│           ├── capability-index.md  ← 完整意图与关键词索引
+│           ├── cheatsheet.md      ← 决策规则速查
+│           ├── glossary.md        ← 术语表
+│           └── capabilities/      ← 10 张能力卡
+├── pack/                          ← 多入口模式（compact pack）
+│   ├── BUILD_MANIFEST.json
+│   ├── capability-destinations.json
+│   ├── lidaxiao-investment-strategy-skill-router/
+│   │   ├── SKILL.md               ← 来源路由入口
+│   │   └── references/            ← 10 张卡 + 索引，供 router 内部调用
+│   ├── bottom-identification-skill/
+│   │   └── SKILL.md
+│   ├── top-bubble-signals-skill/
+│   │   └── SKILL.md
+│   ├── wind-vane-tracking-skill/
+│   │   └── SKILL.md
+│   ├── bond-stock-spread-skill/
+│   │   └── SKILL.md
+│   ├── fund-flow-policy-skill/
+│   │   └── SKILL.md
+│   └── stock-selection-skill/
+│       └── SKILL.md
+```
+
+## 如何使用
+
+先把仓库克隆下来：
+
+```bash
+git clone https://github.com/raphael-y7/lidaxiao-investment-strategy-skill.git
+```
+
+### 装 single（推荐先试这个）
+
+```bash
+# macOS / Linux
+cp -r lidaxiao-investment-strategy-skill/single/lidaxiao-investment-strategy-skill ~/.agents/skills/
+```
+
+```powershell
+# Windows
+Copy-Item -Recurse .\lidaxiao-investment-strategy-skill\single\lidaxiao-investment-strategy-skill "$env:USERPROFILE\.agents\skills\"
+```
+
+### 装 pack
+
+只复制含 `SKILL.md` 的目录，不要把 `pack/` 下的两个 json 一起拷进 skills 目录：
+
+```bash
+# macOS / Linux
+cd lidaxiao-investment-strategy-skill/pack
+cp -r lidaxiao-investment-strategy-skill-router \
+      bottom-identification-skill \
+      top-bubble-signals-skill \
+      wind-vane-tracking-skill \
+      bond-stock-spread-skill \
+      fund-flow-policy-skill \
+      stock-selection-skill ~/.agents/skills/
+```
+
+```powershell
+# Windows
+$pack = ".\lidaxiao-investment-strategy-skill\pack"
+$dest = "$env:USERPROFILE\.agents\skills"
+@('lidaxiao-investment-strategy-skill-router','bottom-identification-skill','top-bubble-signals-skill','wind-vane-tracking-skill','bond-stock-spread-skill','fund-flow-policy-skill','stock-selection-skill') |
+  ForEach-Object { Copy-Item -Recurse -LiteralPath (Join-Path $pack $_) -Destination $dest }
+```
+
+> `~/.agents/skills` 是 DSH 的 skill 目录；用别的 agent 时换成它自己的 skills 目录即可（例如 Claude Code 是 `~/.claude/skills`）。
+
+### 怎么确认装好了
+
+装完问一句"现在这个点位算不算历史大底，该核对哪几项"，看 agent 是否直接进入 `bottom-identification-skill` 的五维核对流程，并主动追问你的 PE/PB 口径、股息率、国债收益率、增减持数据，而不是给你一段泛泛的"底部区域可以分批建仓"。装的是 single 时，它会先读入口再按路由表进能力卡；装的是 pack 时，对应能力会被直接命中。
+
+## 来源
+
+- 《李大霄投资战略》
+- 全书蒸馏，共产出 10 张能力卡
+
+## 声明
+
+本仓库只发布蒸馏后的 skill、索引与规则速查材料，不包含原书 PDF、EPUB、OCR 文件、截图或全书转写稿。能力卡中出现的原文引用仅用于标注方法论出处和保持可审计性。
+
+书中所有数字判据（历史大底的 PE/PB 区间、股息率与国债收益率读数、巴菲特指数分级、万亿巨量不涨的天数、10 人调查等）都是案例与经验归纳，原书未提供统计回测背书；这些读数均为书中时点口径，使用时须以当期数据重算并声明所用口径。书中判据是对历史 7 个低点与 5 个高点的归纳，不构成保证。本仓库内容不构成投资建议。
+
+## License
+
+[MIT](https://opensource.org/licenses/MIT)
