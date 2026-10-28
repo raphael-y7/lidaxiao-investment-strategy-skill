@@ -1,0 +1,49 @@
+{
+  "generated_by": "cangjie-tools v2.5.0",
+  "bundle_id": "lidaxiao-investment-strategy-skill-v3",
+  "router_entrypoint": "lidaxiao-investment-strategy-skill-router",
+  "entrypoint_count": 7,
+  "capability_count": 10,
+  "destinations": {
+    "ldxx-position-posture": {
+      "served_by": "lidaxiao-investment-strategy-skill-router",
+      "card": "lidaxiao-investment-strategy-skill-router/references/capabilities/position-posture-skill.md"
+    },
+    "ldxx-bottom-identification-skill": {
+      "promoted_to": "bottom-identification-skill",
+      "router_view": "lidaxiao-investment-strategy-skill-router/references/capabilities/bottom-identification-skill.md"
+    },
+    "ldxx-top-bubble-signals-skill": {
+      "promoted_to": "top-bubble-signals-skill",
+      "router_view": "lidaxiao-investment-strategy-skill-router/references/capabilities/top-bubble-signals-skill.md"
+    },
+    "ldxx-wind-vane-tracking-skill": {
+      "promoted_to": "wind-vane-tracking-skill",
+      "router_view": "lidaxiao-investment-strategy-skill-router/references/capabilities/wind-vane-tracking-skill.md"
+    },
+    "ldxx-bond-stock-spread-skill": {
+      "promoted_to": "bond-stock-spread-skill",
+      "router_view": "lidaxiao-investment-strategy-skill-router/references/capabilities/bond-stock-spread-skill.md"
+    },
+    "ldxx-fund-flow-policy-skill": {
+      "promoted_to": "fund-flow-policy-skill",
+      "router_view": "lidaxiao-investment-strategy-skill-router/references/capabilities/fund-flow-policy-skill.md"
+    },
+    "ldxx-entry-qualification": {
+      "served_by": "lidaxiao-investment-strategy-skill-router",
+      "card": "lidaxiao-investment-strategy-skill-router/references/capabilities/entry-qualification-skill.md"
+    },
+    "ldxx-strategy-fit": {
+      "served_by": "lidaxiao-investment-strategy-skill-router",
+      "card": "lidaxiao-investment-strategy-skill-router/references/capabilities/strategy-fit-skill.md"
+    },
+    "ldxx-stock-selection-skill": {
+      "promoted_to": "stock-selection-skill",
+      "router_view": "lidaxiao-investment-strategy-skill-router/references/capabilities/stock-selection-skill.md"
+    },
+    "ldxx-sentiment-contrarian": {
+      "served_by": "lidaxiao-investment-strategy-skill-router",
+      "card": "lidaxiao-investment-strategy-skill-router/references/capabilities/sentiment-contrarian-skill.md"
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "tool": "cangjie-tools v2.5.0",
+  "published_hashes": {
+    "bond-stock-spread-skill\\SKILL.md": "aaa57d57ea7cd6cc542d3111f6666b6950217186badefdb3190d345a36683a8a",
+    "bottom-identification-skill\\SKILL.md": "0a198b4e36521aa0e60e7ddb0abf5535e9361dcec617f076aa0ce0bc74e65bc2",
+    "capability-destinations.json": "a282d903f778d4d03b01bc1b95ccb7bbae3d22e65ea89c3763b32fa11cdf4250",
+    "fund-flow-policy-skill\\SKILL.md": "825b258c3067cd0ca1103dcc4812c3fabc0cf019c2edfb3b27219905d43118b2",
+    "lidaxiao-investment-strategy-skill-router\\references\\capabilities\\bond-stock-spread-skill.md": "6f775fc73d7801bb6d955282749821b0ec983d48e2313996a95ddab1d223bbe2",
+    "lidaxiao-investment-strategy-skill-router\\references\\capabilities\\bottom-identification-skill.md": "554f7ff222d2f3b96bd8c696e9d4baaf75daa351794a2b89786fb0f16fcdcd0c",
+    "lidaxiao-investment-strategy-skill-router\\references\\capabilities\\entry-qualification.md": "bc25bdce690782e5652f7b21d3f4ae6a3b51e8d2d5b4fb85538c79e478466783",
+    "lidaxiao-investment-strategy-skill-router\\references\\capabilities\\fund-flow-policy-skill.md": "9cbd7799fb4d0ec183e9386bb33a8b370aa5fc38e0aca1075ad4fb6ea5edd156",
+    "lidaxiao-investment-strategy-skill-router\\references\\capabilities\\position-posture.md": "8bccc06cdac9114170b511a56839c00139263f4103dda2451b0cefa57ea33378",
+    "lidaxiao-investment-strategy-skill-router\\references\\capabilities\\sentiment-contrarian.md": "0a55e7236c4c34a64ba49d600bb547fbdc548f8dfd214bbf9047ab1129e05f58",
+    "lidaxiao-investment-strategy-skill-router\\references\\capabilities\\stock-selection-skill.md": "033692c44d674216aed6a358693628ab10f5bceb49852b8cc6e869a3ab31f0b1",
+    "lidaxiao-investment-strategy-skill-router\\references\\capabilities\\strategy-fit.md": "18c96ad4842bd9b25305b388528be0a8a805bc53d5f2b2798da9bc3c2b161889",
+    "lidaxiao-investment-strategy-skill-router\\references\\capabilities\\top-bubble-signals-skill.md": "dfc59a99f80d66879b9bfe36f75e379fe806b1c1302c2bd5875735baa88c12cb",
+    "lidaxiao-investment-strategy-skill-router\\references\\capabilities\\wind-vane-tracking-skill.md": "8c8e30767c14ea76ddf934b865107aafcaa89a7154aca3e83b7cfaa57a2a8a8f",
+    "lidaxiao-investment-strategy-skill-router\\references\\capability-index.md": "94bb54814a71bafd64590262452fd1c1d10c8eec878f1967a9917d63275b6e74",
+    "lidaxiao-investment-strategy-skill-router\\references\\cheatsheet.md": "0e7e30e4ed05b923546dcd7b88a8e0e4dc38c221c3cafe2882afa1871fb3b4bd",
+    "lidaxiao-investment-strategy-skill-router\\references\\glossary.md": "f5f66feff174aacd2cccd0ea9f34112922c7abb8448cc50b71315cecd23b7537",
+    "lidaxiao-investment-strategy-skill-router\\references\\overview.md": "d36a7e886002ad603a7c4afc64f0d565b648edaa7401fe63aafa43abba699a45",
+    "lidaxiao-investment-strategy-skill-router\\SKILL.md": "138195abf5f7ec41fcd0d790d10255e3f2c9861e37870f89317bdd5fa81a3799",
+    "stock-selection-skill\\SKILL.md": "b87b722472c090a7db0d580d45fa9053d47f835f9070bf68a6bea240b936fe52",
+    "top-bubble-signals-skill\\SKILL.md": "20e6823e1bac5eff122ff85b1fc9c22d0ec7c123ebc83cab37b7865082781a79",
+    "wind-vane-tracking-skill\\SKILL.md": "0053ceff8b2e465ed62032a6297c86d44f74104cf00197007c6e75fedd12c793"
+  },
+  "note": "update/重编译前比对 published_hashes；检测到本地手改不得静默覆盖",
+  "bundle_id": "lidaxiao-investment-strategy-skill-v3",
+  "bundle_sha256": "717e725630e2b3487168d298b0cc640d4a4ec046189f05e3fea61a78d87e7d59",
+  "variant": "pack",
+  "run_id": "run-20261012-015929-c1d4a1",
+  "decision": {
+    "schema_version": 1,
+    "requested": "pack",
+    "selected": "pack",
+    "decision_policy": "single-first-v1",
+    "skill_budget": 8,
+    "promoted_count": 6,
+    "capability_count": 10,
+    "reasons": [
+      "用户显式选择 pack，auto 决策器不覆盖用户选择"
+    ],
+    "alternative": "single（1 个入口 + 10 张内部能力卡）",
+    "user_confirmed": true,
+    "preserve_strategy_on_update": true
+  }
+}
