@@ -1,0 +1,182 @@
+bundle_id: lidaxiao-investment-strategy-skill-v3
+book:
+  title: 李大霄投资战略（第三版）
+  author: 李大霄
+  publisher: 经济日报出版社 2025 年 1 月第 3 版
+  slug: 李大霄投资战略
+entry:
+  name: lidaxiao-investment-strategy-skill
+  description: |
+    《李大霄投资战略（第三版）》全书能力入口。当用户需要判断 A 股大势位置（是否历史大底/大顶）、
+    跟踪国家队与聪明钱动向、做股债配置比较、评估自己是否适合入市、决定选股与排除方向、
+    或用情绪逆向指标校准判断时使用。触发词：历史大底、地球顶、风向标、股债差、
+    余钱、抓大放小、舆论一边倒、引资速度、抄底、逃顶、割肉、止损。仅覆盖书中方法论；不预测具体点位、不推荐个股、
+    不构成投资建议。
+  core_principles:
+    - 底部需勇气、顶部需淡泊、中间需坚持；操作姿态由市场位置决定，而非情绪
+    - 只用余钱（30—50 年不用且能承受净值波动），远离杠杆，普通人按基金五步骤逐级毕业
+    - 投资赚上市公司创造的钱，投机只是转移交易对手的钱；多坐轿子、不坐庄、少交易
+    - 大底与大顶靠多维公开信号交叉验证（估值/股债差/风向标/情绪/供给政策），不猜点位
+    - 引资速度≥融资速度市场才涨；一二级市场平衡是 A 股问题的根源变量
+    - 以后的牛市仅仅是好股票的牛市：只拥抱最低估最优质高股息核心资产，远离高估五类
+    - 预测会受多种因素影响而偏差，本书内容仅为个人观点，绝不能作为操作依据（作者边界条款）
+  out_of_scope:
+    - 预测具体点位或日期
+    - 推荐具体个股或代客决策
+    - A 股/港股之外市场的方法论套用（书中美股内容仅作顶部信号参照）
+    - 与本书方法论无关的泛财经问题
+    - 原书后记内容（本批扫描件未含）
+  stop_conditions:
+    - 用户寻求具体买卖指令或点位目标时，声明边界并停止
+    - 关键数据（估值/股息率/国债收益率/流量）缺失且用户无法提供时，按卡片判停规则输出"不可判定"而不是猜值
+    - 情绪类或经验类单一信号不足以得出结论时，必须与其他维度交叉或明示降级
+promotion_budget: 8
+router_entry:
+  name: lidaxiao-investment-strategy-skill-router
+  description: 来源路由入口（compact pack 视图），意图路由表与 single 入口一致。
+  core_principles: []
+  out_of_scope: []
+  stop_conditions: []
+capabilities:
+  - capability_id: ldxx-position-posture
+    slug: position-posture
+    title: 大势位置—操作姿态总纲
+    status: active
+    revision: r1
+    importance: 5星——全书大势判断的执行总纲，任何买卖决策都须先过"位置—姿态"映射；认错止损为作者所称"铁的纪律"
+    intents: [判断现在是该抄底、逃顶还是持有, 我被套了要不要止损认错, 我该防踏空还是防套牢, 这个点位该怎么摆操作姿态]
+    keywords: [底部勇气, 顶部淡泊, 3000点坚持, 第一时间认错, 止损, 割肉, 被套, 套牢, 清仓, 拿不住, 恐惧踏空, 恐惧套牢]
+    one_liner: 按市场位置匹配三阶段操作姿态——历史大底需勇气买入、中间区域需坚持持有、历史大顶需淡泊退出，并以"第一时间认错止损"兜底。
+    description: 当用户问"该抄底、逃顶还是持有""怕踏空还是怕套牢""要不要止损"时使用：按底部勇气/中间坚持/顶部淡泊三阶段输出操作姿态与风险清单，含第一时间认错止损。不用于个股选择与点位预测。
+    card: cards/ldxx-position-posture-skill.md
+    also_read: [ldxx-bottom-identification-skill, ldxx-top-bubble-signals-skill]
+    promotion: {destination: router, reason: 位置-姿态总纲的位置映射依赖大底/顶部判据，作为路由入口总纲卡服务全部场景}
+  - capability_id: ldxx-bottom-identification-skill
+    slug: bottom-identification-skill
+    title: 历史大底五维识别
+    status: active
+    revision: r1
+    importance: 5星——用户核心目标"抄底决策"的直接载体，全书最强可执行框架
+    intents: [现在是不是历史大底, 帮我核对底部信号清单, 这个点位能不能抄底, 股息率和股债差到历史极值了吗]
+    keywords: [历史大底, 抄底, PE/PB估值区间, 股债差, 股息率, IPO暂停, 风向标]
+    one_liner: 用估值、股债差、风向标、情绪极值、供给与政策五维对照历史大底区间，多维同向才判定"底部区域"，不猜点位。
+    description: 当用户问"是不是历史大底""能不能抄底""底部信号齐了吗"时使用：以历史大底估值区间、股债差、风向标、情绪极值、供给政策五维核对表逐项对照后判定。不用于个股估值与点位预测。
+    frontmatter:
+      description: 当用户问"是不是历史大底""能不能抄底""底部信号齐了吗"时使用：以估值、股债差、风向标、情绪极值、供给政策五维核对表逐项判定。近邻负例：不用于顶部/泡沫判断（用 ldxx-top-bubble-signals-skill）、不预测具体点位、不做个股估值。
+    card: cards/ldxx-bottom-identification-skill.md
+    also_read: [ldxx-position-posture, ldxx-wind-vane-tracking-skill, ldxx-bond-stock-spread-skill, ldxx-sentiment-contrarian]
+    promotion: {destination: promoted, reason: 用户核心目标"抄底决策"直接载体；意图/契约/运行/复用/评测五判据全过}
+  - capability_id: ldxx-top-bubble-signals-skill
+    slug: top-bubble-signals-skill
+    title: 顶部、泡沫与转弱信号识别
+    status: active
+    revision: r1
+    importance: 5星——逃顶与抄底对称，6124/5178 顶部判断与美股十迹象实录为证
+    intents: [现在是不是顶部或泡沫, 要不要逃顶分批卖出, 万亿巨量不涨危险吗, 重大事件前该不该搏行情]
+    keywords: [顶部信号, 泡沫, 地球顶, 逃顶, 放量滞涨, 量价背离, 万亿成交, 巴菲特指数, 万亿巨量不涨, 摘荔枝, 摘熟苹果]
+    one_liner: 以估值极值、供给减持、杠杆与做空工具、巨量不涨、情绪与事件提前量核对顶部/泡沫信号并分级预警，按荔枝/苹果节奏定退出。
+    description: 当用户问"是不是顶部/有泡沫吗""要不要逃顶""万亿巨量危险吗"时使用：地球顶五逻辑、巴菲特指数120/130/150分级、巨量不涨、摘荔枝/摘熟苹果节奏、事件提前量核对。不用于预测具体点位。
+    frontmatter:
+      description: 当用户问"是不是顶部/有泡沫吗""要不要逃顶""万亿巨量危险吗""重大事件前该不该搏行情"时使用：地球顶五逻辑、巴菲特指数分级、巨量不涨、摘荔枝/摘熟苹果节奏、事件提前量核对。近邻负例：不用于底部识别（用 ldxx-bottom-identification-skill）、不预测具体点位。
+    card: cards/ldxx-top-bubble-signals-skill.md
+    also_read: [ldxx-position-posture, ldxx-bond-stock-spread-skill, ldxx-sentiment-contrarian]
+    promotion: {destination: promoted, reason: 逃顶与抄底对称，触发词与底部卡互斥清晰；五判据全过}
+  - capability_id: ldxx-wind-vane-tracking-skill
+    slug: wind-vane-tracking-skill
+    title: 风向标与跨市场资金跟踪
+    status: active
+    revision: r1
+    importance: 5星——风向标是作者判断体系的核心抓手，18年实录用它标注7底5顶
+    intents: [跟踪四大风向标判断大势区域, 识别外资变脸与空翻多信号, 建立货币/资源/商品/政策外围联动观察清单]
+    keywords: [风向标, 国家队, 汇金, 社保基金, 中石油, 上市公司增减持, 北向资金, 外资变脸, 空翻多, 外围市场联动]
+    one_liner: 产业资本增持与国家队出手＝底部区域倾向，巨量减持与社保撤退＝顶部区域倾向，多信号同向才下区域结论。
+    description: 用户看到汇金/社保/上市公司增减持、北向资金、外资空翻多等聪明钱动向，或想搭大势资金跟踪清单、用国家队行为交叉验证底部顶部时使用；trigger：风向标/国家队/变脸。不用于精确时点预测、个股推荐或流量核算。
+    frontmatter:
+      description: 用户看到汇金/社保/上市公司增减持、北向资金、外资空翻多等聪明钱动向，或想搭大势资金跟踪清单、用国家队行为交叉验证底部顶部时使用。近邻负例：不用于精确时点预测、个股推荐；资金流量账（引资vs融资）用 ldxx-fund-flow-policy-skill。
+    card: cards/ldxx-wind-vane-tracking-skill.md
+    also_read: [ldxx-bottom-identification-skill, ldxx-top-bubble-signals-skill, ldxx-fund-flow-policy-skill]
+    promotion: {destination: promoted, reason: 风向标日常跟踪任务自包含；五判据全过}
+  - capability_id: ldxx-bond-stock-spread-skill
+    slug: bond-stock-spread-skill
+    title: 股债差逆向配置与高息牛判别
+    status: active
+    revision: r1
+    importance: 5星——全书最可量化的配置规则，2024 年核心新方法论，可复算
+    intents: [计算并解读股债差, 识别债市与基金端过热信号, 判别高息牛, 估算回购增持套利空间]
+    keywords: [股债差, 国债收益率, 股息率, 重债轻股, 重股轻债, 货基涨停, 债基限购, 高息牛, 高股息, 资产荒, 回购增持套利]
+    one_liner: 股债差＝优质股股息率−10年/50年国债收益率；历史高位＝股票相对极便宜（配置良机），历史低位＝弃债追股危险。
+    description: 用户在股债配置间纠结、提供国债收益率或股息率数据、看到货基暴涨/债基限购/高股息行情，或问高息牛与回购增持套利时使用；trigger：股债差/国债收益率/股息率/高息牛。前提是余钱；不输出精确再平衡比例与债券买卖策略。
+    frontmatter:
+      description: 用户在股债配置间纠结、提供国债收益率或股息率数据、看到货基暴涨/债基限购/高股息行情，或问高息牛与回购增持套利时使用；前提是余钱。近邻负例：不输出精确再平衡比例与债券买卖策略、不预测大盘点位、不做个股选择。
+    card: cards/ldxx-bond-stock-spread-skill.md
+    also_read: [ldxx-bottom-identification-skill, ldxx-top-bubble-signals-skill, ldxx-fund-flow-policy-skill]
+    promotion: {destination: promoted, reason: 全书最可量化配置规则，输入输出均为可复算数据；五判据全过}
+  - capability_id: ldxx-fund-flow-policy-skill
+    slug: fund-flow-policy-skill
+    title: 资金供需流量与政策研判
+    status: active
+    revision: r1
+    importance: 4星——A股特色核心变量与作者解释涨跌的总标尺；结论依赖公开流量数据且政策规律属小样本归纳
+    intents: [用引资速度vs融资速度三态规则判断资金供需方向, 做一二级市场平衡流量对照, 解读救市政策与政策工具启停信号, 处理赌经济还是赌政策的权重取舍]
+    keywords: [引资速度, 融资速度, IPO, 再融资, 减持, 回购增持净流入, 一二级市场平衡, 救市, 稳市场, 政策底, 国九条, 赌政策]
+    one_liner: 引资速度＞融资速度则涨、等于则平、小于则跌；政策工具停启与组合拳方向是A股研判的核心权重。
+    description: 用户问IPO/减持/回购增持流量对大盘的影响、评估国九条或救市组合拳利弊、纠结经济差但政策在发力该信哪个时使用；trigger：引资融资速度/IPO节奏/政策底/救市。输出方向倾向；流量数据缺失时只做政策判读并声明。
+    frontmatter:
+      description: 用户问IPO/减持/回购增持流量对大盘的影响、评估国九条或救市组合拳利弊、纠结经济差但政策在发力该信哪个时使用。近邻负例：不预测点位；风向标含义与国家队行为解读用 ldxx-wind-vane-tracking-skill；流量数据缺失时只做政策判读并声明。
+    card: cards/ldxx-fund-flow-policy-skill.md
+    also_read: [ldxx-wind-vane-tracking-skill, ldxx-bond-stock-spread-skill]
+    promotion: {destination: promoted, reason: 流量对照与政策研判触发独立；五判据全过}
+  - capability_id: ldxx-entry-qualification
+    slug: entry-qualification
+    title: 入市资格自检与散户进阶
+    status: active
+    revision: r1
+    importance: 4星——全书纪律底座，其余能力适用的前提闸门；本身不产出大势判断结论
+    intents: [余钱两条件与急钱排除的入市资格判定, 15条件入市自检表逐项核对, 基金五步骤进阶定位, 家庭同意与单司令治理安排]
+    keywords: [余钱, 急钱, 量力而为, 入市资格, 15个条件, 基金五步骤, 跳级, 辞职炒股, 单司令, 家庭同意, 停止交易10年]
+    one_liner: 只用30—50年不用且能承受波动的余钱入市；先按基金五步骤逐级毕业再碰个股，家庭内一个司令。
+    description: 用户问该不该入市、这笔钱能不能投、新手问先买什么练手、或家庭账户决策冲突时使用；trigger：余钱/急钱/15个条件/基金五步骤/跳级/辞职炒股。输出资格判定与进阶位置；毕业标准原书未量化，非投资建议。
+    card: cards/ldxx-entry-qualification-skill.md
+    also_read: [ldxx-strategy-fit, ldxx-stock-selection-skill]
+    promotion: {destination: router, reason: 入市资格是其余能力的前提闸门，作为路由入口前置卡}
+  - capability_id: ldxx-strategy-fit
+    slug: strategy-fit
+    title: 策略定位与能力自检
+    status: active
+    revision: r1
+    importance: 4星——定位是每次交易决策的前置闸门；但输出为定性定位建议而非可直接执行的信号
+    intents: [评估自己适合投资还是投机, 判断自己在财富转移通道中赚的是谁的钱, 决定坐轿子还是抬轿子, 校准股市赚钱概率预期, 盘点自己的知识面与博弈准备]
+    keywords: [投资还是投机, 投机, 短线, 追涨停, 坐轿子, 抬轿子, 财富转移, 一赚二平七亏, 考前5名, 比体力比智力, 割韭菜, 坐庄]
+    one_liner: 投机须"投机氛围+投机技巧"双条件同时成立才选，投资须"投资条件+投资水平"双条件同时成立才选；两者都不满足就多坐轿子、不坐庄、只赚上市公司创造的钱。
+    description: 用户在"投资还是投机""做长线还是追热点短线""坐轿还是抬轿"间纠结，或问"我赚谁的钱/适不适合炒股"时使用；输入资金、技巧、性格，输出策略定位建议（默认多坐轿）。不处理选股与择时。
+    card: cards/ldxx-strategy-fit-skill.md
+    also_read: [ldxx-entry-qualification, ldxx-stock-selection-skill]
+    promotion: {destination: router, reason: 定位输出为定性建议且常与入市资格连用，路由承载}
+  - capability_id: ldxx-stock-selection-skill
+    slug: stock-selection-skill
+    title: 选股优先与排除
+    status: active
+    revision: r1
+    importance: 5星——落地"买什么"核心问题，排除清单直接阻断灾难性亏损
+    intents: [问买什么股票并获取选股优先级排序, 用排除清单筛查黑五类/退市/铁公鸡风险, 判断一家公司算不算好公司, 评估新股次新股高溢价跨境ETF能不能买, 判断长期持有的正确用法与企业生命周期位置]
+    keywords: [抓大放小, 选股, 黑五类, 高估五类, 铁公鸡, ST, 退市风险, 次新股, 破发, 新股五族, 分红, 回购, 市值管理, 企业生命周期, 长期持有]
+    one_liner: 选股自上而下按"全球最好→全国第一→全国第二"排序、切勿倒着选；先排除高估五类、ST/退市与不分红的"铁公鸡"，再在低位拥抱最低估最优质的蓝筹龙头。
+    description: 用户问"买什么股/怎么选股/这家公司好不好/要不要继续持有"，或持有小盘、题材、次新、ST股想筛风险时使用；输出选股顺序建议与排除/保留标记。不处理择时。触发词：抓大放小、黑五类、铁公鸡、生命周期、选股。
+    frontmatter:
+      description: 用户问"买什么股/怎么选股/这家公司好不好/要不要继续持有"，或持有小盘、题材、次新、ST股想筛风险时使用；输出选股顺序与排除/保留标记。近邻负例：不处理择时（何时买用 ldxx-bottom-identification-skill / ldxx-top-bubble-signals-skill）、不推荐具体个股代码。
+    card: cards/ldxx-stock-selection-skill.md
+    also_read: [ldxx-strategy-fit, ldxx-entry-qualification, ldxx-bottom-identification-skill]
+    promotion: {destination: promoted, reason: 排除+排序清单自包含可独立运行；"买什么"触发独立；五判据全过}
+  - capability_id: ldxx-sentiment-contrarian
+    slug: sentiment-contrarian
+    title: 情绪逆向与信息甄别
+    status: active
+    revision: r1
+    importance: 4星——全书人性逆向指标体系载体、顶底五维判定的情绪维度；指标为生活化经验抽样，不能独立产生买卖信号
+    intents: [判断当前市场情绪处于冰点还是过热, 检测舆论是否一边倒并获得逆向转化提示, 评估某位股评/大V/信息源可不可信, 用生活化指标读市场温度, 在相反信息与从众压力下做独立性与信息纠偏自检]
+    keywords: [舆论一边倒, 群体效应, 情绪逆向, 逆向思维, 十人调查, 牛熊生活指标, 基金申购顶峰, 墨菲定律, 与成功者为伍, 十年检验, 股评, 从众, 全网一致看多, 身边人都在买, 开户]
+    one_liner: 舆论与生活指标一边倒到极值时事情往往朝相反方向转化——共识作反向提示，信息源按"先查机构盈利模式、医德重于医术、10年言论检验"评级；结论必须与估值信号交叉。
+    description: 用户说"身边人都在买/没人谈股票了/全网一致看多"，想判断市场情绪阶段，或问"这个大V靠谱吗/两条相反说法信哪条"时使用；输入舆论与生活样本，输出情绪温度与逆向提示，不能单独作买卖依据。
+    card: cards/ldxx-sentiment-contrarian-skill.md
+    also_read: [ldxx-bottom-identification-skill, ldxx-top-bubble-signals-skill]
+    promotion: {destination: router, reason: 情绪信号强制与估值信号交叉，独立运行降级，路由承载}

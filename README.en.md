@@ -19,10 +19,12 @@ It is not a book summary, nor a reading response — it breaks the reusable meth
 
 10 capability cards in four groups, organized in the order "locate first, do the math second, pass the gates next, then land on what to buy and how to check your own sentiment":
 
-- **Market position**: `position-posture-skill` (position-to-posture doctrine), `bottom-identification-skill` (five-dimension historic-bottom identification), `top-bubble-signals-skill` (tops, bubbles and weakening signals)
+- **Market position**: `position-posture` (position-to-posture doctrine), `bottom-identification-skill` (five-dimension historic-bottom identification), `top-bubble-signals-skill` (tops, bubbles and weakening signals)
 - **Money and allocation**: `wind-vane-tracking-skill` (wind-vane and cross-market money tracking), `bond-stock-spread-skill` (bond-stock spread contrarian allocation and high-dividend bull diagnosis), `fund-flow-policy-skill` (capital supply/demand flows and policy reading)
-- **Eligibility and self-assessment**: `entry-qualification-skill` (market-entry self-check and the retail progression path), `strategy-fit-skill` (strategy positioning and capability self-check)
-- **Instruments and sentiment**: `stock-selection-skill` (selection priority and exclusion), `sentiment-contrarian-skill` (contrarian sentiment and source screening)
+- **Eligibility and self-assessment**: `entry-qualification` (market-entry self-check and the retail progression path), `strategy-fit` (strategy positioning and capability self-check)
+- **Instruments and sentiment**: `stock-selection-skill` (selection priority and exclusion), `sentiment-contrarian` (contrarian sentiment and source screening)
+
+Card ids, destinations and cross-dependencies are in [`INDEX.md`](./INDEX.md); the raw metadata is in [`bundle/verified.yaml`](./bundle/verified.yaml).
 
 ## Two packaging modes: single and pack
 
@@ -44,7 +46,7 @@ The 6 cards promoted to standalone skills in the pack:
 - `fund-flow-policy-skill` — capital flows and policy reading
 - `stock-selection-skill` — selection priority and exclusion
 
-The 4 cards left in the router, served through its routing table: `position-posture-skill` (position-to-posture doctrine), `entry-qualification-skill` (market-entry self-check), `strategy-fit-skill` (strategy positioning), `sentiment-contrarian-skill` (contrarian sentiment). These four either depend on another card's criteria to land a conclusion (position mapping depends on the bottom and top judgments), or are themselves the gate in front of every other capability — promoted on their own, they tend to answer without context.
+The 4 cards left in the router, served through its routing table: `position-posture` (position-to-posture doctrine), `entry-qualification` (market-entry self-check), `strategy-fit` (strategy positioning), `sentiment-contrarian` (contrarian sentiment). These four either depend on another card's criteria to land a conclusion (position mapping depends on the bottom and top judgments), or are themselves the gate in front of every other capability — promoted on their own, they tend to answer without context.
 
 ### Which one to install
 
@@ -73,7 +75,7 @@ Pick by the way you work, and **install only one**:
 - Check five dimensions one by one: (1) valuation (2) bond-stock spread (3) wind vanes and money behaviour (4) sentiment extremes (5) supply and policy. Each is marked "matches / does not match / no data"; a missing item goes on the open-items list and is **never silently treated as satisfied**
 - Aggregate: 4 or more aligned → "historic-bottom-area characteristics are significant"; 3 → "suspected, keep tracking"; 2 or fewer → "not enough to call this a bottom area"
 - Stop branch: if valuation clearly sits outside the range (PE well above the comparison ceiling), the only permitted output is "atypical historic bottom", even when every other dimension aligns — the book anchors on valuation, and all 7 historical lows were extreme on it
-- The output must carry the book's own boundary clause and hand off to `position-posture-skill` for what to actually do
+- The output must carry the book's own boundary clause and hand off to `position-posture` for what to actually do
 
 **Sample answer**
 
@@ -107,9 +109,18 @@ These skills were produced with the **[cangjie-skill](https://github.com/kangaro
 3. **Triple verification** — every candidate must pass three checks: at least two independent in-book supports (cross-domain), the ability to answer questions the book never explicitly addresses (predictive power), and not being common sense (distinctiveness). Of the 372, 307 were verified, 62 were demoted to reference material, 3 were left for review, and 0 were invented; about 110 individual numbers were traced back to the source text one by one
 4. **RIA++ construction** — structure each unit along R (quotation) / I (restatement in own words) / A1 (in-book case) / A2 (future trigger scenario) / E (executable steps) / B (boundaries and blind spots), clustered into 10 capability units, one card each
 5. **Zettelkasten linking** — map dependencies, contrasts and combinations between cards, producing the capability index and the routing table, and writing into each card's A2 section how it differs from its neighbours
-6. **Trigger and output testing** — run one representative task plus one negative/boundary case per card, with missing data always handled by the card's stop rules and never silently guessed; failing cards go back for rework
+6. **Trigger and output testing** — design one representative task plus one negative/boundary case per card, with missing data always handled by the card's stop rules and never silently guessed; failing cards go back for rework
 
 One boundary clause runs through every card: in the introduction the author states that forecasts are subject to many factors, including force majeure, and will deviate — and that the content must never be used as a basis for trading. That clause is written into the B section of every card and into the entry's stop rules.
+
+## Testing and verification
+
+The test material from the generation process ships with the repository under `evals/`: `test-prompts/` holds trigger cases for all 8 entries, `trigger-suite.json` is a runnable trigger blind-test suite, and `测试报告-A/B/C.md` are the per-card records of the stage-4 stress test.
+
+- **Per-card stress test**: each of the 10 cards ran 1 representative task plus 1 negative/boundary case, 10 / 10 PASS. Representative tasks follow the card's E-section steps exactly, and missing data always goes through the stop rules (marked "no data", added to the open-items list) instead of being guessed. The three reports cover U1–U3 / U4–U7 / U8–U10, so all 10 cards are covered, and the backfill-level fixes logged along the way were folded into the cards
+- **Negative cases hold the boundary**: requests to forecast levels, give order-placement times, recommend specific stocks, or apply US/Japan market conventions were all refused correctly, citing the book's own boundary clause
+- **Trigger cases**: 1 for the single entry plus 1 for each of the 7 pack entries — 3 should_trigger + 2 should_not_trigger (at least one a sibling-skill decoy) + 1 edge_case each, `minimum_pass_rate` 0.8. `trigger-suite.json` adds 10 more cases, 6 of them sibling-skill decoys
+- **Stated honestly**: trigger and output evaluation so far is manual execution plus a paper walkthrough. The machine-grading scripts (`run_trigger_evals.py`, `run_output_evals.py`) did not run in this environment, so what ships under `evals/` is cases plus human review records, not automated scores
 
 ## Repository layout
 
@@ -118,8 +129,15 @@ lidaxiao-investment-strategy-skill/
 ├── README.md                      ← Chinese version
 ├── README.en.md                   ← you are reading this
 ├── LICENSE                        ← MIT
+├── INDEX.md                       ← skill map: capability table + dependencies + loading order
 ├── BOOK_OVERVIEW.md               ← whole-book comprehension (Adler four-step, stage 0 output)
 ├── verified.md                    ← triple-verification and 10-unit clustering of the 372 candidates
+├── bundle/                        ← the Bundle the compiler reads (no runs/ or snapshots/)
+│   ├── verified.yaml              ← capability metadata: capability_id / slug / intents / also_read / destination
+│   ├── cards/                     ← the 10 capability cards as authored (ldxx-<slug>-skill.md)
+│   └── book/
+│       ├── overview.md            ← whole-book overview
+│       └── glossary.md            ← glossary
 ├── single/                        ← single-entry build
 │   └── lidaxiao-investment-strategy-skill/
 │       ├── SKILL.md               ← entry: triggers + routing table + loading rules
@@ -136,6 +154,11 @@ lidaxiao-investment-strategy-skill/
 │   ├── lidaxiao-investment-strategy-skill-router/
 │   │   ├── SKILL.md               ← source router entry
 │   │   └── references/            ← 10 cards + indexes, called by the router
+│   │       ├── overview.md
+│   │       ├── capability-index.md
+│   │       ├── cheatsheet.md
+│   │       ├── glossary.md
+│   │       └── capabilities/      ← 10 capability cards
 │   ├── bottom-identification-skill/
 │   │   └── SKILL.md
 │   ├── top-bubble-signals-skill/
@@ -148,6 +171,12 @@ lidaxiao-investment-strategy-skill/
 │   │   └── SKILL.md
 │   └── stock-selection-skill/
 │       └── SKILL.md
+└── evals/                         ← trigger cases and per-card stress-test records
+    ├── 测试报告-A.md              ← U1–U3 representative tasks + negative cases
+    ├── 测试报告-B.md              ← U4–U7 representative tasks + negative cases
+    ├── 测试报告-C.md              ← U8–U10 representative tasks + negative cases
+    ├── trigger-suite.json         ← trigger blind-test suite (run_trigger_evals format)
+    └── test-prompts/              ← 1 trigger case file per entry, 8 in total
 ```
 
 ## Usage
@@ -214,4 +243,3 @@ All numeric criteria in the book (the PE/PB ranges for historic bottoms, dividen
 ## License
 
 [MIT](./LICENSE)
-

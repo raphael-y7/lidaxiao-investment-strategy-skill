@@ -1,0 +1,52 @@
+{
+  "skill": "bottom-identification-skill",
+  "version": "0.1.0",
+  "source_book": "李大霄投资战略（第三版） — 李大霄",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "现在是不是历史大底？帮我核对一下底部信号",
+      "expected_behavior": "应激活本 skill，按五维核对表逐项判定并输出待核清单",
+      "notes": "核心正面场景"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "全A市盈率12倍、股息率3%、汇金在增持、基金发行遇冷，这算底部区域吗",
+      "expected_behavior": "应激活本 skill，用给定数据填五维表并给出多维同向判定",
+      "notes": "带数据的正面场景"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "3000点以下能不能抄底？",
+      "expected_behavior": "应激活本 skill，先核对五维信号，再给区域判断（不预测点位）",
+      "notes": "口语化正面场景"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "现在是不是到顶了？创业板PE 120倍，要不要清仓",
+      "expected_behavior": "不应激活本 skill，应激活 top-bubble-signals-skill",
+      "notes": "跨 skill 混淆诱饵：判顶场景"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "帮我推荐一只低估的银行股",
+      "expected_behavior": "不应激活本 skill，应激活 stock-selection-skill（且不推荐个股）",
+      "notes": "跨 skill 混淆诱饵：选股场景"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "跌了30%了，是不是该到底了？",
+      "expected_behavior": "应激活本 skill，但须说明跌幅本身不是底部判据，需五维信号核对",
+      "notes": "边界：把跌幅当判据的常见误区"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "至少 3 条 should_trigger + 2 条 should_not_trigger + 1 条 edge_case。全部 should_not_trigger 必须通过（诱饵容错为 0），其中至少 1 条为同书兄弟 skill 场景（跨 skill 混淆测试）。"
+}

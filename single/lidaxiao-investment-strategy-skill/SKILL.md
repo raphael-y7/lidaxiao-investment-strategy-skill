@@ -39,16 +39,16 @@ metadata:
 
 | 用户意图 | 先读 | 补读/备注 |
 |---|---|---|
-| 判断现在是该抄底、逃顶还是持有；我被套了要不要止损认错；我该防踏空还是防套牢；这个点位该怎么摆操作姿态 | references/capabilities/position-posture-skill.md | references/capabilities/bottom-identification-skill.md、references/capabilities/top-bubble-signals-skill.md |
-| 现在是不是历史大底；帮我核对底部信号清单；这个点位能不能抄底；股息率和股债差到历史极值了吗 | references/capabilities/bottom-identification-skill.md | references/capabilities/position-posture-skill.md、references/capabilities/wind-vane-tracking-skill.md、references/capabilities/bond-stock-spread-skill.md、references/capabilities/sentiment-contrarian-skill.md |
-| 现在是不是顶部或泡沫；要不要逃顶分批卖出；万亿巨量不涨危险吗；重大事件前该不该搏行情 | references/capabilities/top-bubble-signals-skill.md | references/capabilities/position-posture-skill.md、references/capabilities/bond-stock-spread-skill.md、references/capabilities/sentiment-contrarian-skill.md |
+| 判断现在是该抄底、逃顶还是持有；我被套了要不要止损认错；我该防踏空还是防套牢；这个点位该怎么摆操作姿态 | references/capabilities/position-posture.md | references/capabilities/bottom-identification-skill.md、references/capabilities/top-bubble-signals-skill.md |
+| 现在是不是历史大底；帮我核对底部信号清单；这个点位能不能抄底；股息率和股债差到历史极值了吗 | references/capabilities/bottom-identification-skill.md | references/capabilities/position-posture.md、references/capabilities/wind-vane-tracking-skill.md、references/capabilities/bond-stock-spread-skill.md、references/capabilities/sentiment-contrarian.md |
+| 现在是不是顶部或泡沫；要不要逃顶分批卖出；万亿巨量不涨危险吗；重大事件前该不该搏行情 | references/capabilities/top-bubble-signals-skill.md | references/capabilities/position-posture.md、references/capabilities/bond-stock-spread-skill.md、references/capabilities/sentiment-contrarian.md |
 | 跟踪四大风向标判断大势区域；识别外资变脸与空翻多信号；建立货币/资源/商品/政策外围联动观察清单 | references/capabilities/wind-vane-tracking-skill.md | references/capabilities/bottom-identification-skill.md、references/capabilities/top-bubble-signals-skill.md、references/capabilities/fund-flow-policy-skill.md |
 | 计算并解读股债差；识别债市与基金端过热信号；判别高息牛；估算回购增持套利空间 | references/capabilities/bond-stock-spread-skill.md | references/capabilities/bottom-identification-skill.md、references/capabilities/top-bubble-signals-skill.md、references/capabilities/fund-flow-policy-skill.md |
 | 用引资速度vs融资速度三态规则判断资金供需方向；做一二级市场平衡流量对照；解读救市政策与政策工具启停信号；处理赌经济还是赌政策的权重取舍 | references/capabilities/fund-flow-policy-skill.md | references/capabilities/wind-vane-tracking-skill.md、references/capabilities/bond-stock-spread-skill.md |
-| 余钱两条件与急钱排除的入市资格判定；15条件入市自检表逐项核对；基金五步骤进阶定位；家庭同意与单司令治理安排 | references/capabilities/entry-qualification-skill.md | references/capabilities/strategy-fit-skill.md、references/capabilities/stock-selection-skill.md |
-| 评估自己适合投资还是投机；判断自己在财富转移通道中赚的是谁的钱；决定坐轿子还是抬轿子；校准股市赚钱概率预期；盘点自己的知识面与博弈准备 | references/capabilities/strategy-fit-skill.md | references/capabilities/entry-qualification-skill.md、references/capabilities/stock-selection-skill.md |
-| 问买什么股票并获取选股优先级排序；用排除清单筛查黑五类/退市/铁公鸡风险；判断一家公司算不算好公司；评估新股次新股高溢价跨境ETF能不能买；判断长期持有的正确用法与企业生命周期位置 | references/capabilities/stock-selection-skill.md | references/capabilities/strategy-fit-skill.md、references/capabilities/entry-qualification-skill.md、references/capabilities/bottom-identification-skill.md |
-| 判断当前市场情绪处于冰点还是过热；检测舆论是否一边倒并获得逆向转化提示；评估某位股评/大V/信息源可不可信；用生活化指标读市场温度；在相反信息与从众压力下做独立性与信息纠偏自检 | references/capabilities/sentiment-contrarian-skill.md | references/capabilities/bottom-identification-skill.md、references/capabilities/top-bubble-signals-skill.md |
+| 余钱两条件与急钱排除的入市资格判定；15条件入市自检表逐项核对；基金五步骤进阶定位；家庭同意与单司令治理安排 | references/capabilities/entry-qualification.md | references/capabilities/strategy-fit.md、references/capabilities/stock-selection-skill.md |
+| 评估自己适合投资还是投机；判断自己在财富转移通道中赚的是谁的钱；决定坐轿子还是抬轿子；校准股市赚钱概率预期；盘点自己的知识面与博弈准备 | references/capabilities/strategy-fit.md | references/capabilities/entry-qualification.md、references/capabilities/stock-selection-skill.md |
+| 问买什么股票并获取选股优先级排序；用排除清单筛查黑五类/退市/铁公鸡风险；判断一家公司算不算好公司；评估新股次新股高溢价跨境ETF能不能买；判断长期持有的正确用法与企业生命周期位置 | references/capabilities/stock-selection-skill.md | references/capabilities/strategy-fit.md、references/capabilities/entry-qualification.md、references/capabilities/bottom-identification-skill.md |
+| 判断当前市场情绪处于冰点还是过热；检测舆论是否一边倒并获得逆向转化提示；评估某位股评/大V/信息源可不可信；用生活化指标读市场温度；在相反信息与从众压力下做独立性与信息纠偏自检 | references/capabilities/sentiment-contrarian.md | references/capabilities/bottom-identification-skill.md、references/capabilities/top-bubble-signals-skill.md |
 
 **非能力类查询**：
 - 书名/作者/章节/整书概览 → references/overview.md

@@ -7,7 +7,7 @@
   "destinations": {
     "ldxx-position-posture": {
       "served_by": "lidaxiao-investment-strategy-skill-router",
-      "card": "lidaxiao-investment-strategy-skill-router/references/capabilities/position-posture-skill.md"
+      "card": "lidaxiao-investment-strategy-skill-router/references/capabilities/position-posture.md"
     },
     "ldxx-bottom-identification-skill": {
       "promoted_to": "bottom-identification-skill",
@@ -31,11 +31,11 @@
     },
     "ldxx-entry-qualification": {
       "served_by": "lidaxiao-investment-strategy-skill-router",
-      "card": "lidaxiao-investment-strategy-skill-router/references/capabilities/entry-qualification-skill.md"
+      "card": "lidaxiao-investment-strategy-skill-router/references/capabilities/entry-qualification.md"
     },
     "ldxx-strategy-fit": {
       "served_by": "lidaxiao-investment-strategy-skill-router",
-      "card": "lidaxiao-investment-strategy-skill-router/references/capabilities/strategy-fit-skill.md"
+      "card": "lidaxiao-investment-strategy-skill-router/references/capabilities/strategy-fit.md"
     },
     "ldxx-stock-selection-skill": {
       "promoted_to": "stock-selection-skill",
@@ -43,7 +43,7 @@
     },
     "ldxx-sentiment-contrarian": {
       "served_by": "lidaxiao-investment-strategy-skill-router",
-      "card": "lidaxiao-investment-strategy-skill-router/references/capabilities/sentiment-contrarian-skill.md"
+      "card": "lidaxiao-investment-strategy-skill-router/references/capabilities/sentiment-contrarian.md"
     }
   }
 }

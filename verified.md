@@ -56,7 +56,13 @@
 
 按用户指示以 pack 输出模式重编译。晋级门（methodology/03b：独立意图/独立契约/独立运行为必要，独立复用/独立评测至少其一）对 10 个单元重跑：
 
-- **promoted（6）**：ldxx-bottom-identification-skill、ldxx-top-bubble-signals-skill、ldxx-wind-vane-tracking-skill、ldxx-bond-stock-spread-skill、ldxx-fund-flow-policy-skill、ldxx-stock-selection-skill——触发词互不重叠、输出契约自包含、可独立评测；description 均带 trigger 条件与近邻负例（红线 5）。
+- **promoted（6）**：ldxx-bottom-identification、ldxx-top-bubble-signals、ldxx-wind-vane-tracking、ldxx-bond-stock-spread、ldxx-fund-flow-policy、ldxx-stock-selection——触发词互不重叠、输出契约自包含、可独立评测；description 均带 trigger 条件与近邻负例（红线 5）。
 - **router（4）**：ldxx-position-posture（位置映射依赖大底/顶部判据，作路由总纲卡）、ldxx-entry-qualification（其余能力的前提闸门）、ldxx-strategy-fit（定性建议常与入市资格连用）、ldxx-sentiment-contrarian（情绪信号强制与估值交叉，独立运行降级）。
 - 入口数 7（1 路由 + 6 晋级）≤ 软预算 8。编译器不变量 1–4 全过，validate_skill_pack.py 0 errors / 0 warnings。
-- 产物：`skill-pack/`（lidaxiao-investment-strategy-skill-router/ + 6 个晋级 Skill 目录 + capability-destinations.json）；single 产物 `skill/` 保留不动（输出策略持久化，两种形态并存由用户选用）。
+- 产物：`skill-pack/`（lidaxiao-investment-strategy-router/ + 6 个晋级 Skill 目录 + capability-destinations.json）；single 产物 `skill/` 保留不动（输出策略持久化，两种形态并存由用户选用）。
+
+## 六、命名统一与 test-prompts（2026-10-28）
+
+- 用户将产物目录与 SKILL.md 的 `name` 统一改为 `-skill` 后缀；本 Bundle 已同步该命名：`entry.name=lidaxiao-investment-strategy-skill`、`router_entry.name=lidaxiao-investment-strategy-skill-router`、10 个 `slug` 与 `capability_id` 均以 `-skill` 结尾、`bundle_id=lidaxiao-investment-strategy-skill-v3`。此后任何重编译都复现该命名，不会退回旧名。
+- 修复用户改名版中的一处不一致：4 张路由承载卡（position-posture/entry-qualification/strategy-fit/sentiment-contrarian）在 capability-index 中的 id 与链接未加后缀，指向不存在的文件（死链）；重编译后已统一，validate 0 errors / 0 warnings。
+- 补 `test-prompts.json`：single 入口 1 份 + pack 7 个入口各 1 份（每份 3 should_trigger + 2 should_not_trigger（含至少 1 条同书兄弟 skill 混淆）+ 1 edge_case，minimum_pass_rate 0.8，darwin_compatible）。另生成 `skill-pack/trigger-suite.json`（run_trigger_evals 格式，target=router，10 条含 6 条兄弟 skill 诱饵），可直接跑盲测触发评测。

@@ -2,38 +2,38 @@
   "tool": "cangjie-tools v2.5.0",
   "published_hashes": {
     "references\\capabilities\\bond-stock-spread-skill.md": "6f775fc73d7801bb6d955282749821b0ec983d48e2313996a95ddab1d223bbe2",
-    "references\\capabilities\\bottom-identification-skill.md": "554f7ff222d2f3b96bd8c696e9d4baaf75daa351794a2b89786fb0f16fcdcd0c",
+    "references\\capabilities\\bottom-identification-skill.md": "27aecd9032c6c32526e5c1aaa26a003dfbff4ccfdf804508b0de72a76786d697",
     "references\\capabilities\\entry-qualification.md": "bc25bdce690782e5652f7b21d3f4ae6a3b51e8d2d5b4fb85538c79e478466783",
     "references\\capabilities\\fund-flow-policy-skill.md": "9cbd7799fb4d0ec183e9386bb33a8b370aa5fc38e0aca1075ad4fb6ea5edd156",
-    "references\\capabilities\\position-posture.md": "8bccc06cdac9114170b511a56839c00139263f4103dda2451b0cefa57ea33378",
+    "references\\capabilities\\position-posture.md": "385c04651f6b4ac8800e82bc9b8031d3756993971bdcc38c30a631f82f21164e",
     "references\\capabilities\\sentiment-contrarian.md": "0a55e7236c4c34a64ba49d600bb547fbdc548f8dfd214bbf9047ab1129e05f58",
-    "references\\capabilities\\stock-selection-skill.md": "033692c44d674216aed6a358693628ab10f5bceb49852b8cc6e869a3ab31f0b1",
+    "references\\capabilities\\stock-selection-skill.md": "f96420579e4657791c1d72a8df1881b23fe584b45e32920ff6fde1cab36a5240",
     "references\\capabilities\\strategy-fit.md": "18c96ad4842bd9b25305b388528be0a8a805bc53d5f2b2798da9bc3c2b161889",
-    "references\\capabilities\\top-bubble-signals-skill.md": "dfc59a99f80d66879b9bfe36f75e379fe806b1c1302c2bd5875735baa88c12cb",
+    "references\\capabilities\\top-bubble-signals-skill.md": "fbcf3b9c0614290490f2856458319292aea983424ada50a29b9e0c05815172c1",
     "references\\capabilities\\wind-vane-tracking-skill.md": "8c8e30767c14ea76ddf934b865107aafcaa89a7154aca3e83b7cfaa57a2a8a8f",
-    "references\\capability-index.md": "94bb54814a71bafd64590262452fd1c1d10c8eec878f1967a9917d63275b6e74",
+    "references\\capability-index.md": "fbed2b445d8e5f86761b24bfaf7f186173b21c8ff0e580d5675a12f9e9d0f538",
     "references\\cheatsheet.md": "0e7e30e4ed05b923546dcd7b88a8e0e4dc38c221c3cafe2882afa1871fb3b4bd",
     "references\\glossary.md": "f5f66feff174aacd2cccd0ea9f34112922c7abb8448cc50b71315cecd23b7537",
     "references\\overview.md": "d36a7e886002ad603a7c4afc64f0d565b648edaa7401fe63aafa43abba699a45",
-    "SKILL.md": "5601ba98e1f4374fc1a11b18d12352a923c7de12219c703e9d86513a2665ca46"
+    "SKILL.md": "9ceedc1131303bd9e367d337023e37a20a607298c8ac27d61d622580be58b47f"
   },
   "note": "update/重编译前比对 published_hashes；检测到本地手改不得静默覆盖",
   "bundle_id": "lidaxiao-investment-strategy-skill-v3",
-  "bundle_sha256": "b72cbe877588885e0ece91293f0d6371c93465d1be85574409a819d073407869",
+  "bundle_sha256": "8627fefcd6da0fed60515a332438fafcb118fb31915aaf7b062ee1edb962cd02",
   "variant": "single",
-  "run_id": "run-20261011-130137-b01df6",
+  "run_id": "run-20261028-211332-4d6c88",
   "decision": {
     "schema_version": 1,
     "requested": "single",
     "selected": "single",
     "decision_policy": "single-first-v1",
     "skill_budget": 8,
-    "promoted_count": 0,
+    "promoted_count": 6,
     "capability_count": 10,
     "reasons": [
       "用户显式选择 single，auto 决策器不覆盖用户选择"
     ],
-    "alternative": "compact pack（1 个来源路由入口 + 0 个晋级 Skill，共 1 个可发现入口）",
+    "alternative": "compact pack（1 个来源路由入口 + 6 个晋级 Skill，共 7 个可发现入口）",
     "user_confirmed": true,
     "preserve_strategy_on_update": true
   }

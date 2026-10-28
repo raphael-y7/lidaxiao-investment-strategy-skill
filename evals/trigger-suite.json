@@ -1,0 +1,68 @@
+{
+  "suite_id": "ldxx-pack-router-v1",
+  "target": "lidaxiao-investment-strategy-skill-router",
+  "split_seed": 42,
+  "train_ratio": 0.6,
+  "trigger_cases": [
+    {
+      "case_id": "t01",
+      "prompt": "李大霄那套大势判断方法都包含哪些能力？",
+      "expected": "trigger",
+      "notes": "书级导航"
+    },
+    {
+      "case_id": "t02",
+      "prompt": "我想系统用这本书的方法做投资分析，从哪开始？",
+      "expected": "trigger",
+      "notes": "书级路径"
+    },
+    {
+      "case_id": "t03",
+      "prompt": "这本书讲的东西现在还适用吗？",
+      "expected": "trigger",
+      "notes": "时效性质疑"
+    },
+    {
+      "case_id": "t04",
+      "prompt": "现在是不是历史大底？帮我核对底部信号",
+      "expected": "no_trigger",
+      "notes": "兄弟skill: bottom-identification-skill"
+    },
+    {
+      "case_id": "t05",
+      "prompt": "A股连续22天万亿成交但指数不涨，危险吗",
+      "expected": "no_trigger",
+      "notes": "兄弟skill: top-bubble-signals-skill"
+    },
+    {
+      "case_id": "t06",
+      "prompt": "10年国债2.3%，红利股息5.2%，该加股票吗",
+      "expected": "no_trigger",
+      "notes": "兄弟skill: bond-stock-spread-skill"
+    },
+    {
+      "case_id": "t07",
+      "prompt": "汇金和社保最近一个增持一个减持，怎么解读",
+      "expected": "no_trigger",
+      "notes": "兄弟skill: wind-vane-tracking-skill"
+    },
+    {
+      "case_id": "t08",
+      "prompt": "IPO 8家、回购增持90亿，市场会怎么走",
+      "expected": "no_trigger",
+      "notes": "兄弟skill: fund-flow-policy-skill"
+    },
+    {
+      "case_id": "t09",
+      "prompt": "帮我从这三家里选一只能买的",
+      "expected": "no_trigger",
+      "notes": "兄弟skill: stock-selection-skill"
+    },
+    {
+      "case_id": "t10",
+      "prompt": "帮我写一个行情数据爬虫脚本",
+      "expected": "no_trigger",
+      "notes": "无关诱饵"
+    }
+  ]
+}

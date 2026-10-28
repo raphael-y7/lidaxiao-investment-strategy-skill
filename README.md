@@ -19,10 +19,12 @@
 
 10 张能力卡，按"先定位、再算账、再过门槛，最后落到买什么与情绪自检"的顺序分四组：
 
-- **大势与位置**：`position-posture-skill`（大势位置—操作姿态总纲）、`bottom-identification-skill`（历史大底五维识别）、`top-bubble-signals-skill`（顶部、泡沫与转弱信号识别）
+- **大势与位置**：`position-posture`（大势位置—操作姿态总纲）、`bottom-identification-skill`（历史大底五维识别）、`top-bubble-signals-skill`（顶部、泡沫与转弱信号识别）
 - **资金与配置**：`wind-vane-tracking-skill`（风向标与跨市场资金跟踪）、`bond-stock-spread-skill`（股债差逆向配置与高息牛判别）、`fund-flow-policy-skill`（资金供需流量与政策研判）
-- **门槛与自我定位**：`entry-qualification-skill`（入市资格自检与散户进阶）、`strategy-fit-skill`（策略定位与能力自检）
-- **标的与情绪**：`stock-selection-skill`（选股优先与排除）、`sentiment-contrarian-skill`（情绪逆向与信息甄别）
+- **门槛与自我定位**：`entry-qualification`（入市资格自检与散户进阶）、`strategy-fit`（策略定位与能力自检）
+- **标的与情绪**：`stock-selection-skill`（选股优先与排除）、`sentiment-contrarian`（情绪逆向与信息甄别）
+
+卡片的编号、去向与相互依赖见 [`INDEX.md`](./INDEX.md)；原始元数据见 [`bundle/verified.yaml`](./bundle/verified.yaml)。
 
 ## 两种打包模式：single 与 pack
 
@@ -44,7 +46,7 @@ pack 里被晋级为独立 skill 的 6 张卡：
 - `fund-flow-policy-skill` — 资金供需流量与政策研判
 - `stock-selection-skill` — 选股优先与排除
 
-留在 router 里、由路由表分流的 4 张卡：`position-posture-skill`（大势位置—操作姿态总纲）、`entry-qualification-skill`（入市资格自检与散户进阶）、`strategy-fit-skill`（策略定位与能力自检）、`sentiment-contrarian-skill`（情绪逆向与信息甄别）。这 4 张要么依赖其他卡的判据才能落地（位置映射依赖大底/顶部判定），要么本身就是其余能力的前提闸门，独立成 skill 反而容易脱离上下文乱答。
+留在 router 里、由路由表分流的 4 张卡：`position-posture`（大势位置—操作姿态总纲）、`entry-qualification`（入市资格自检与散户进阶）、`strategy-fit`（策略定位与能力自检）、`sentiment-contrarian`（情绪逆向与信息甄别）。这 4 张要么依赖其他卡的判据才能落地（位置映射依赖大底/顶部判定），要么本身就是其余能力的前提闸门，独立成 skill 反而容易脱离上下文乱答。
 
 ### 该装哪一种
 
@@ -73,7 +75,7 @@ pack 里被晋级为独立 skill 的 6 张卡：
 - 五维逐项核对：①估值 ②股债差 ③风向标与资金 ④情绪极值 ⑤供给与政策，每项判"符合 / 不符合 / 无数据"；缺数据的项标"无数据"进待核清单，**不得默认视为满足**
 - 汇总判定：≥4 项同向 → "历史大底区域特征显著"；3 项 → "疑似，继续跟踪"；≤2 项 → "不足以判定为底部区域"
 - 判停分支：估值维度明显偏离区间（PE 显著高于对照上限）时，即使其余维度同向，也只能输出"非典型历史大底"——原书判据以估值为锚，历史 7 个低点都是极端估值
-- 输出末尾强制带原书边界条款，并衔接 `position-posture-skill` 谈操作姿态
+- 输出末尾强制带原书边界条款，并衔接 `position-posture` 谈操作姿态
 
 **最终回答示例**
 
@@ -107,9 +109,18 @@ pack 里被晋级为独立 skill 的 6 张卡：
 3. **三重验证筛选**——每个候选必须通过三项检验：书内至少有 2 处独立佐证（跨域）、能回答书中未明说的新问题（预测力）、不是常识（独特性）。372 条中 307 条 verified、62 条降为参考材料、3 条留待复核、0 条凭空编造；数值类约 110 个独立数字逐一回查原文
 4. **RIA++ 构造**——按 R（原文引用）/ I（用自己的话重写）/ A1（书中案例）/ A2（未来触发场景）/ E（可执行步骤）/ B（边界与盲点）六个维度结构化，聚成 10 个能力单元，每个单元一张卡
 5. **Zettelkasten 链接**——找出能力卡之间的依赖、对比、组合关系，生成能力索引与路由表，并在每张卡的 A2 段写清"与相邻能力怎么区分"
-6. **触发与输出测试**——按卡逐条执行代表性任务与负例/边界测试，缺数据一律按卡片判停规则处理、不静默猜值；未通过的卡回炉重做
+6. **触发与输出测试**——为每张卡设计代表性任务与负例/边界用例，缺数据一律按卡片判停规则处理、不静默猜值；未通过的卡回炉重做
 
 本书有一条贯穿全部卡片的边界条款：作者自己在导读里写明"预测会受到多种因素甚至是不可抗力的影响而发生偏差……绝对不能作为操作依据"。这条被写进每一张卡的 B 段，也写进了入口的判停规则。
+
+## 测试与验证
+
+生成过程的测试材料一并发布在 `evals/`：`test-prompts/` 是 8 个入口的触发用例，`trigger-suite.json` 是可直接跑的触发盲测套件，`测试报告-A/B/C.md` 是阶段 4 压力测试的逐卡记录。
+
+- **逐卡压力测试**：10 张卡各跑 1 条代表性任务 + 1 条负例/边界用例，10 / 10 PASS；代表性任务严格按卡内 E 段逐步执行，缺数据一律走判停规则（标"无数据"、进待核清单），不静默猜值。三份报告按 U1–U3 / U4–U7 / U8–U10 分组覆盖全部 10 张卡，过程中登记的回填级修正已并入卡片
+- **负例守边界**：要求预测点位、给出挂单时点、推荐具体个股、套用美股/日股口径等越界请求，均被正确拒绝并引用原书边界条款
+- **触发用例**：single 入口 1 份 + pack 7 个入口各 1 份，每份 3 条 should_trigger + 2 条 should_not_trigger（含至少 1 条同书兄弟 skill 的混淆诱饵）+ 1 条 edge_case，`minimum_pass_rate` 0.8；`trigger-suite.json` 另收 10 条、其中 6 条是兄弟 skill 诱饵的盲测用例
+- **如实说明**：触发与输出评测目前是人工执行 + 纸面走查，机器评测脚本（`run_trigger_evals.py`、`run_output_evals.py`）在本环境未跑通，`evals/` 发布的是用例与人工核对记录，不是自动化跑分结果
 
 ## 仓库结构
 
@@ -118,8 +129,15 @@ lidaxiao-investment-strategy-skill/
 ├── README.md                      ← 你正在看的
 ├── README.en.md                   ← English version
 ├── LICENSE                        ← MIT
+├── INDEX.md                       ← skill 地图：能力总表 + 依赖关系 + 加载顺序
 ├── BOOK_OVERVIEW.md               ← 整书理解（Adler 四步拆解，阶段 0 产出）
 ├── verified.md                    ← 372 条候选的三重验证与 10 单元聚类结论
+├── bundle/                        ← 编译器读的 Bundle（不含 runs/ 与 snapshots/）
+│   ├── verified.yaml              ← 能力元数据：capability_id / slug / 触发意图 / also_read / 去向
+│   ├── cards/                     ← 10 张能力卡原件（ldxx-<slug>-skill.md）
+│   └── book/
+│       ├── overview.md            ← 整书概览
+│       └── glossary.md            ← 术语表
 ├── single/                        ← 单一入口模式
 │   └── lidaxiao-investment-strategy-skill/
 │       ├── SKILL.md               ← 入口：触发条件 + 路由表 + 加载规则
@@ -136,6 +154,11 @@ lidaxiao-investment-strategy-skill/
 │   ├── lidaxiao-investment-strategy-skill-router/
 │   │   ├── SKILL.md               ← 来源路由入口
 │   │   └── references/            ← 10 张卡 + 索引，供 router 内部调用
+│   │       ├── overview.md
+│   │       ├── capability-index.md
+│   │       ├── cheatsheet.md
+│   │       ├── glossary.md
+│   │       └── capabilities/      ← 10 张能力卡
 │   ├── bottom-identification-skill/
 │   │   └── SKILL.md
 │   ├── top-bubble-signals-skill/
@@ -148,6 +171,12 @@ lidaxiao-investment-strategy-skill/
 │   │   └── SKILL.md
 │   └── stock-selection-skill/
 │       └── SKILL.md
+└── evals/                         ← 触发用例与逐卡压力测试记录
+    ├── 测试报告-A.md              ← U1–U3 代表性任务 + 负例
+    ├── 测试报告-B.md              ← U4–U7 代表性任务 + 负例
+    ├── 测试报告-C.md              ← U8–U10 代表性任务 + 负例
+    ├── trigger-suite.json         ← 触发盲测套件（run_trigger_evals 格式）
+    └── test-prompts/              ← 8 个入口各 1 份触发用例
 ```
 
 ## 如何使用
@@ -214,4 +243,3 @@ $dest = "$env:USERPROFILE\.agents\skills"
 ## License
 
 [MIT](./LICENSE)
-
