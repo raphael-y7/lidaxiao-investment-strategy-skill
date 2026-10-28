@@ -129,9 +129,18 @@ lidaxiao-investment-strategy-skill/
 ├── README.md                      ← 你正在看的
 ├── README.en.md                   ← English version
 ├── LICENSE                        ← MIT
+├── GITHUB_REPO.md                 ← GitHub 仓库元数据（description / topics）
 ├── INDEX.md                       ← skill 地图：能力总表 + 依赖关系 + 加载顺序
 ├── BOOK_OVERVIEW.md               ← 整书理解（Adler 四步拆解，阶段 0 产出）
 ├── verified.md                    ← 372 条候选的三重验证与 10 单元聚类结论
+├── CANGJIE_ADAPTATION.md          ← 仓颉适配说明：文本状态 / 蒸馏目标 / 证据规则 / 使用边界
+├── TEST_SUMMARY.md                ← 阶段 4 压力测试摘要：范围 / 结构检查 / 结果 / 回归建议
+├── candidates/                    ← 阶段 1 五路提取的候选池原件（共 372 条）
+│   ├── frameworks.md              ← 框架候选 49 条
+│   ├── principles.md              ← 原则候选 145 条
+│   ├── cases.md                   ← 案例候选 76 条
+│   ├── counter_examples.md        ← 反例候选 51 条
+│   └── glossary.md                ← 术语候选 51 条
 ├── bundle/                        ← 编译器读的 Bundle（不含 runs/ 与 snapshots/）
 │   ├── verified.yaml              ← 能力元数据：capability_id / slug / 触发意图 / also_read / 去向
 │   ├── cards/                     ← 10 张能力卡原件（ldxx-<slug>-skill.md）
@@ -142,6 +151,7 @@ lidaxiao-investment-strategy-skill/
 │   └── lidaxiao-investment-strategy-skill/
 │       ├── SKILL.md               ← 入口：触发条件 + 路由表 + 加载规则
 │       ├── BUILD_MANIFEST.json    ← 编译清单与文件哈希
+│       ├── test-prompts.json      ← 入口触发用例（3 正 / 2 负 / 1 边界）
 │       └── references/
 │           ├── overview.md        ← 整书概览
 │           ├── capability-index.md  ← 完整意图与关键词索引
@@ -153,6 +163,7 @@ lidaxiao-investment-strategy-skill/
 │   ├── capability-destinations.json
 │   ├── lidaxiao-investment-strategy-skill-router/
 │   │   ├── SKILL.md               ← 来源路由入口
+│   │   ├── test-prompts.json      ← 触发用例（3 正 / 2 负 / 1 边界）
 │   │   └── references/            ← 10 张卡 + 索引，供 router 内部调用
 │   │       ├── overview.md
 │   │       ├── capability-index.md
@@ -160,17 +171,23 @@ lidaxiao-investment-strategy-skill/
 │   │       ├── glossary.md
 │   │       └── capabilities/      ← 10 张能力卡
 │   ├── bottom-identification-skill/
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   └── test-prompts.json      ← 触发用例（3 正 / 2 负 / 1 边界）
 │   ├── top-bubble-signals-skill/
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   └── test-prompts.json      ← 触发用例（3 正 / 2 负 / 1 边界）
 │   ├── wind-vane-tracking-skill/
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   └── test-prompts.json      ← 触发用例（3 正 / 2 负 / 1 边界）
 │   ├── bond-stock-spread-skill/
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   └── test-prompts.json      ← 触发用例（3 正 / 2 负 / 1 边界）
 │   ├── fund-flow-policy-skill/
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   └── test-prompts.json      ← 触发用例（3 正 / 2 负 / 1 边界）
 │   └── stock-selection-skill/
-│       └── SKILL.md
+│       ├── SKILL.md
+│       └── test-prompts.json      ← 触发用例（3 正 / 2 负 / 1 边界）
 └── evals/                         ← 触发用例与逐卡压力测试记录
     ├── 测试报告-A.md              ← U1–U3 代表性任务 + 负例
     ├── 测试报告-B.md              ← U4–U7 代表性任务 + 负例

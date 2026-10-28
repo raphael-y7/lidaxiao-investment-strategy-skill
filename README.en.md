@@ -129,9 +129,18 @@ lidaxiao-investment-strategy-skill/
 ├── README.md                      ← Chinese version
 ├── README.en.md                   ← you are reading this
 ├── LICENSE                        ← MIT
+├── GITHUB_REPO.md                 ← GitHub repository metadata (description / topics)
 ├── INDEX.md                       ← skill map: capability table + dependencies + loading order
 ├── BOOK_OVERVIEW.md               ← whole-book comprehension (Adler four-step, stage 0 output)
 ├── verified.md                    ← triple-verification and 10-unit clustering of the 372 candidates
+├── CANGJIE_ADAPTATION.md          ← cangjie adaptation notes: text status / distillation goals / evidence rules / usage boundaries
+├── TEST_SUMMARY.md                ← stage 4 stress-test summary: scope / structure checks / results / regression guidance
+├── candidates/                    ← candidate pools from the five stage-1 extractors (372 in total)
+│   ├── frameworks.md              ← 49 framework candidates
+│   ├── principles.md              ← 145 principle candidates
+│   ├── cases.md                   ← 76 case candidates
+│   ├── counter_examples.md        ← 51 counter-example candidates
+│   └── glossary.md                ← 51 glossary candidates
 ├── bundle/                        ← the Bundle the compiler reads (no runs/ or snapshots/)
 │   ├── verified.yaml              ← capability metadata: capability_id / slug / intents / also_read / destination
 │   ├── cards/                     ← the 10 capability cards as authored (ldxx-<slug>-skill.md)
@@ -142,6 +151,7 @@ lidaxiao-investment-strategy-skill/
 │   └── lidaxiao-investment-strategy-skill/
 │       ├── SKILL.md               ← entry: triggers + routing table + loading rules
 │       ├── BUILD_MANIFEST.json    ← build manifest and file hashes
+│       ├── test-prompts.json      ← entry trigger cases (3 positive / 2 negative / 1 edge)
 │       └── references/
 │           ├── overview.md        ← whole-book overview
 │           ├── capability-index.md  ← full intent and keyword index
@@ -153,6 +163,7 @@ lidaxiao-investment-strategy-skill/
 │   ├── capability-destinations.json
 │   ├── lidaxiao-investment-strategy-skill-router/
 │   │   ├── SKILL.md               ← source router entry
+│   │   ├── test-prompts.json      ← trigger cases (3 positive / 2 negative / 1 edge)
 │   │   └── references/            ← 10 cards + indexes, called by the router
 │   │       ├── overview.md
 │   │       ├── capability-index.md
@@ -160,17 +171,23 @@ lidaxiao-investment-strategy-skill/
 │   │       ├── glossary.md
 │   │       └── capabilities/      ← 10 capability cards
 │   ├── bottom-identification-skill/
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   └── test-prompts.json      ← trigger cases (3 positive / 2 negative / 1 edge)
 │   ├── top-bubble-signals-skill/
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   └── test-prompts.json      ← trigger cases (3 positive / 2 negative / 1 edge)
 │   ├── wind-vane-tracking-skill/
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   └── test-prompts.json      ← trigger cases (3 positive / 2 negative / 1 edge)
 │   ├── bond-stock-spread-skill/
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   └── test-prompts.json      ← trigger cases (3 positive / 2 negative / 1 edge)
 │   ├── fund-flow-policy-skill/
-│   │   └── SKILL.md
+│   │   ├── SKILL.md
+│   │   └── test-prompts.json      ← trigger cases (3 positive / 2 negative / 1 edge)
 │   └── stock-selection-skill/
-│       └── SKILL.md
+│       ├── SKILL.md
+│       └── test-prompts.json      ← trigger cases (3 positive / 2 negative / 1 edge)
 └── evals/                         ← trigger cases and per-card stress-test records
     ├── 测试报告-A.md              ← U1–U3 representative tasks + negative cases
     ├── 测试报告-B.md              ← U4–U7 representative tasks + negative cases

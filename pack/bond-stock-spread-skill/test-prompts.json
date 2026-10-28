@@ -1,0 +1,52 @@
+{
+  "skill": "bond-stock-spread-skill",
+  "version": "0.1.0",
+  "source_book": "李大霄投资战略（第三版） — 李大霄",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "10年期国债收益率2.3%，红利指数股息率5.2%，股债差算高位吗",
+      "expected_behavior": "应激活本 skill，计算股债差、给历史位置判断与口径说明",
+      "notes": "核心正面场景（可复算）"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "现在该加股票还是继续买债基",
+      "expected_behavior": "应激活本 skill，以余钱为前提给配置倾向",
+      "notes": "配置决策场景"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "高息牛还成立吗",
+      "expected_behavior": "应激活本 skill，按资产荒+低利率+高分红三条件核对",
+      "notes": "判别类正面场景"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "现在是不是历史大底",
+      "expected_behavior": "不应激活本 skill，应激活 bottom-identification-skill",
+      "notes": "跨 skill 混淆诱饵：判底场景"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "国九条出台算不算大利好",
+      "expected_behavior": "不应激活本 skill，应激活 fund-flow-policy-skill",
+      "notes": "跨 skill 混淆诱饵：政策场景"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "帮我算股债差，但我这60万是两年后结婚用的",
+      "expected_behavior": "应激活本 skill 但须先判停：非余钱，输出条件性说明而非配置建议",
+      "notes": "边界：资金性质不合格"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "至少 3 条 should_trigger + 2 条 should_not_trigger + 1 条 edge_case。全部 should_not_trigger 必须通过（诱饵容错为 0），其中至少 1 条为同书兄弟 skill 场景（跨 skill 混淆测试）。"
+}

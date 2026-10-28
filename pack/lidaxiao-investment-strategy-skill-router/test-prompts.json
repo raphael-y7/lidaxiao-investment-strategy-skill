@@ -1,0 +1,52 @@
+{
+  "skill": "lidaxiao-investment-strategy-skill-router",
+  "version": "0.1.0",
+  "source_book": "李大霄投资战略（第三版） — 李大霄",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "李大霄那套大势判断方法都包含哪些能力？",
+      "expected_behavior": "应激活路由入口，展示路由表与核心原则",
+      "notes": "书级导航问题"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "我想系统用这本书的方法做投资分析，从哪开始？",
+      "expected_behavior": "应激活路由入口，给出加载顺序建议（先入市资格→再看位置→再看选股）",
+      "notes": "书级使用路径问题"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "这本书里关于抄底和逃顶的框架分别在哪？",
+      "expected_behavior": "应激活路由入口，指向大底识别与顶部信号两张卡",
+      "notes": "跨卡导航问题"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "帮我算一下当前股债差，10年国债2.3%，红利股息5.2%",
+      "expected_behavior": "不应激活路由入口，应直接激活 bond-stock-spread-skill",
+      "notes": "跨 skill 混淆诱饵：单一能力可解，不该走路由"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "现在是不是历史大底？我该不该满仓",
+      "expected_behavior": "不应激活路由入口，应直接激活 bottom-identification-skill",
+      "notes": "跨 skill 混淆诱饵：单一能力可解"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "这本书讲的东西现在还适用吗？",
+      "expected_behavior": "应激活路由入口，用 overview 与批判节回答时效性，并说明各卡的 Boundary",
+      "notes": "边界：时效性质疑，需元信息而非能力卡"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "至少 3 条 should_trigger + 2 条 should_not_trigger + 1 条 edge_case。全部 should_not_trigger 必须通过（诱饵容错为 0），其中至少 1 条为同书兄弟 skill 场景（跨 skill 混淆测试）。"
+}
