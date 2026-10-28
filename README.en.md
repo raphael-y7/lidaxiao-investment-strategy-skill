@@ -213,4 +213,5 @@ All numeric criteria in the book (the PE/PB ranges for historic bottoms, dividen
 
 ## License
 
-[MIT](https://opensource.org/licenses/MIT)
+[MIT](./LICENSE)
+
